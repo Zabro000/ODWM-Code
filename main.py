@@ -21,7 +21,11 @@ def Game_list(File_Name):
             print("The file is created!")
     else:
         print("found")
+    
+    #printing quesiton lists
 
+
+# given the game intro prarameters if zero scientists fit raise error 
 
 #def Csv(File_Name):
    # with open(File_Name, 'w') as File:
@@ -60,13 +64,12 @@ class Scientist:
         self.odwm = bool(odwm)
         pass
 
-    def load_scientists(self): 
+    def load_scientists(self, list): 
         pass
         #parse through the each row and load the scientists with spificied quailities 
     def print_summary(self):
-        if self.unit == 1:
-            unit = "Forces and Fields"
-        print(f"This Scientists name is {self.name} and they are found in {unit}")
+        Units = ["forces and fields", "EMR", "atomic"]
+        print(f"This Scientists name is {self.name} and they are found in {Units[self.unit -1]}")
 
 
     def load_description(self):
@@ -87,5 +90,8 @@ print(sci_1.odwm)
 sci_4.print_summary()
 
 #Csv(Gamefile_Name)
+
+
+#### To do  different sets of questions for each unit some how split it up
 
 
