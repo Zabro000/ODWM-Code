@@ -56,13 +56,19 @@ class Scientist:
         self.num = num_name
         self.unit = physics_unit
         self.respose_list = respose_list
-        self.diploma_expariment = expariment
-        self.odwm = odwm
+        self.diploma_expariment = bool(expariment)
+        self.odwm = bool(odwm)
         pass
 
     def load_scientists(self): 
         pass
         #parse through the each row and load the scientists with spificied quailities 
+    def print_summary(self):
+        if self.unit == 1:
+            unit = "Forces and Fields"
+        print(f"This Scientists name is {self.name} and they are found in {unit}")
+
+
     def load_description(self):
         pass
         # this will run at the end of the game, it will load a file with info about scientist and references
@@ -70,10 +76,15 @@ class Scientist:
         pass
 
 sci_1 = Scientist("Millikan", 1, 1, None, 1, 1)
+sci_2 = Scientist("Faraday", 2, 1, None, 0, 1)
+sci_3 = Scientist("Coulomb", 3, 1, None, 1, 1)
+sci_4 = Scientist("Henry", 4, 1, None, 0, 1)
 
 Game_list(Gamefile_Name)
 Game_Intro()
 print(sci_1.name)
+print(sci_1.odwm)
+sci_4.print_summary()
 
 #Csv(Gamefile_Name)
 
