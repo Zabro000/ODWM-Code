@@ -36,7 +36,17 @@ def Game_list(File_Name):
        
         
 def Game_Intro():
-    pass
+    print("Welcome to the ODWM gesser game! I the computer will guess what physicist you are thinking of!")
+    print("To start this game you need to set some settings")
+    print("Do you want only ODWM?")
+    odwm = input()
+    print("What physics unit do you want? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic")
+    unit = input()
+    print("Do you only want to play with physicists whose expariments are on the diploma?")
+    diploma = input()
+    
+    return odwm, unit, diploma
+   
     #This function will handle the "front screen"
 
 class Scientist:
@@ -59,8 +69,12 @@ class Scientist:
     def create_scientists(self):
         pass
 
+sci_1 = Scientist("Millikan", 1, 1, None, 1, 1)
 
 Game_list(Gamefile_Name)
-Csv(Gamefile_Name)
+Game_Intro()
+print(sci_1.name)
+
+#Csv(Gamefile_Name)
 
 
