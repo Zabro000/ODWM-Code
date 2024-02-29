@@ -99,7 +99,7 @@ def Game(sci_list):
         length = len(sci_list)
         for i in range(length):
             if sci_list[i].odwm == False:
-                sci_listt.append(sci_list[i])
+                sci_list2.append(sci_list[i])
         sci_list = sci_list2
                 
     print(sci_list)
