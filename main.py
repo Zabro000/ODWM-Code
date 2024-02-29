@@ -59,7 +59,7 @@ class Scientist:
     def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
         self.name = name
         self.num = num_name
-        self.unit = physics_unit
+        self.physics_unit = physics_unit
         self.respose_list = respose_list
         self.diploma_expariment = bool(expariment)
         self.odwm = bool(odwm)
@@ -93,15 +93,28 @@ def Game(sci_list):
     man, unit, dip = Game_Intro()
     man = int(man)
     dip = int(dip)
+    unit = int(unit)
+    print("unit", unit)
 
     if man == 1:
         sci_list2 = []
         length = len(sci_list)
         for i in range(length):
-            if sci_list[i].odwm == False:
+            if sci_list[i].odwm == True:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
-    
+
+    if unit == 1:
+        print("all scientists are selected")
+    else: 
+        sci_list2 = []
+        length = len(sci_list)
+        for i in range(length):
+            if unit == sci_list[i].physics_unit:
+                sci_list2.append(sci_list[i])
+        sci_list = sci_list2
+
+
     if dip == 1:
         print("Only scientists whose expariments are on the diploma selected")
         sci_list2 = []
@@ -110,11 +123,11 @@ def Game(sci_list):
             if sci_list[i].diploma_expariment == True:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
-
-                
-    print(sci_list)
+    
+    print("This is the final list of scientists in the game:")
+    
     for i in sci_list:
-        print("here are the remaining names:", i.name)
+        print(i.name)
                 #sci_list = sci_list.pop(i)
                 
 
@@ -126,13 +139,14 @@ def Game(sci_list):
     
 
 
-sci_1 = Scientist("Millikan", 1, 1, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
-sci_2 = Scientist("Faraday",2,1,None,0,1,None)
-sci_25 = Scientist("Faradayyy",2,1,None,0,1,None)
-sci_3 = Scientist("Coulomb", 3, 1, None, 1, 1, None)
-sci_4 = Scientist("Henry",4,1,None,0,1,None)
+sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
+sci_2 = Scientist("Faraday",2,2,None,0,1,None)
+sci_25 = Scientist("Faradayyy",2,2,None,0,1,None)
+sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
+sci_4 = Scientist("Henry",4,2,None,0,1,None)
+sci_5 = Scientist("Enstein",5,3,None,0,1,None)
 
-sci_object_list = [sci_1, sci_2, sci_25, sci_3, sci_4]
+sci_object_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
 
 
 Game(sci_object_list)
