@@ -92,15 +92,25 @@ def Game(sci_list):
 
     man, unit, dip = Game_Intro()
     man = int(man)
+    dip = int(dip)
 
     if man == 1:
         sci_list2 = []
-        print("okay")
         length = len(sci_list)
         for i in range(length):
             if sci_list[i].odwm == False:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
+    
+    if dip == 1:
+        print("Only scientists whose expariments are on the diploma selected")
+        sci_list2 = []
+        length = len(sci_list)
+        for i in range(length):
+            if sci_list[i].diploma_expariment == True:
+                sci_list2.append(sci_list[i])
+        sci_list = sci_list2
+
                 
     print(sci_list)
     for i in sci_list:
