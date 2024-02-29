@@ -20,7 +20,9 @@ def Game_list(File_Name):
         with open(File_Name,'x'):
             print("The file is created!")
     else:
-        print("found")
+        print("Game file found")
+
+
     
     #printing quesiton lists
 
@@ -34,10 +36,7 @@ def Game_list(File_Name):
        # Length = len(Headers)
 
        # for i in range(Length):
-         #   Writer.writerow(Headers[i])
-
-    
-       
+         #   Writer.writerow(Headers[i])    
         
 def Game_Intro():
     print("Welcome to the ODWM gesser game! I the computer will guess what physicist you are thinking of!")
@@ -53,20 +52,31 @@ def Game_Intro():
    
     #This function will handle the "front screen"
 
+def Game_code():
+    odwm, unit, diploma_exp = Game_Intro()
+    
+
+
+
 class Scientist:
 
-    def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm):
+    def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
         self.name = name
         self.num = num_name
         self.unit = physics_unit
         self.respose_list = respose_list
         self.diploma_expariment = bool(expariment)
         self.odwm = bool(odwm)
+        self.questions = special_questions
         pass
 
     def load_scientists(self, list): 
         pass
-        #parse through the each row and load the scientists with spificied quailities 
+        #parse through the each row and load the scientists with spificied quailities and also load their unique questions
+        #Unique questions will only affect the score of the scientst they are for
+        # All Spceical questions are +20 or a high score
+    
+    
     def print_summary(self):
         Units = ["forces and fields", "EMR", "atomic"]
         print(f"This Scientists name is {self.name} and they are found in {Units[self.unit -1]}")
@@ -78,16 +88,15 @@ class Scientist:
     def create_scientists(self):
         pass
 
-sci_1 = Scientist("Millikan", 1, 1, None, 1, 1)
-sci_2 = Scientist("Faraday", 2, 1, None, 0, 1)
-sci_3 = Scientist("Coulomb", 3, 1, None, 1, 1)
-sci_4 = Scientist("Henry", 4, 1, None, 0, 1)
+sci_1 = Scientist("Millikan", 1, 1, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
+sci_2 = Scientist("Faraday", 2, 1, None, 0, 1, None)
+sci_3 = Scientist("Coulomb", 3, 1, None, 1, 1, None)
+sci_4 = Scientist("Henry", 4, 1, None, 0, 1, None)
 
 Game_list(Gamefile_Name)
-Game_Intro()
 print(sci_1.name)
 print(sci_1.odwm)
-sci_4.print_summary()
+print(sci_1.questions)
 
 #Csv(Gamefile_Name)
 
