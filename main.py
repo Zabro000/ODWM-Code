@@ -92,14 +92,22 @@ def Game(sci_list):
 
     man, unit, dip = Game_Intro()
     man = int(man)
+
     if man == 1:
+        sci_list2 = []
         print("okay")
-        for people in sci_list:
-            if people.odwm == True:
-                sci_list.remove(people)
-    
+        length = len(sci_list)
+        for i in range(length):
+            if sci_list[i].odwm == False:
+                sci_listt.append(sci_list[i])
+        sci_list = sci_list2
+                
+    print(sci_list)
     for i in sci_list:
-        print(i.name)
+        print("here are the remaining names:", i.name)
+                #sci_list = sci_list.pop(i)
+                
+
     
 
 
@@ -109,12 +117,12 @@ def Game(sci_list):
 
 
 sci_1 = Scientist("Millikan", 1, 1, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
-sci_2 = Scientist("Faraday", 2, 1, None, 1, 1, None)
+sci_2 = Scientist("Faraday",2,1,None,0,1,None)
+sci_25 = Scientist("Faradayyy",2,1,None,0,1,None)
 sci_3 = Scientist("Coulomb", 3, 1, None, 1, 1, None)
-sci_4 = Scientist("Henry", 4, 1, None, 1, 1, None)
-sci_5 = Scientist("Henryyyyy",4,1,None,0,1,None)
+sci_4 = Scientist("Henry",4,1,None,0,1,None)
 
-sci_object_list = [sci_1, sci_2, sci_3, sci_4, sci_5]
+sci_object_list = [sci_1, sci_2, sci_25, sci_3, sci_4]
 
 
 Game(sci_object_list)
