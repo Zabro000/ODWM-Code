@@ -36,7 +36,6 @@ class Scientist:
         #Unique questions will only affect the score of the scientst they are for
         # All Spceical questions are +20 or a high score
     
-    
     def print_summary(self):
         Units = ["forces and fields", "EMR", "atomic"]
         print(f"This Scientists name is {self.name} and they are found in {Units[self.unit -1]}")
@@ -96,6 +95,7 @@ def Scientist_Sort(sci_list):
 #This function will also asign or read the row numbers assosiated with each scientist
 #How do I load the questions and the socres?
 
+#The goal of this function is to build the big list of questions to randomly choose from 
 game_file_name = "Questions_and_Answers.csv"
 def Loading_Game_Data(file_name, selected_sci_list):
     #this will look for the main responses list file
@@ -139,8 +139,6 @@ def Loading_Game_Data(file_name, selected_sci_list):
             # if there is a none then do nothing and continue through the list
             pass
         
-
-
     print("QUESTIONS LIST  ", questions_list)
 
     with open(file_name, 'r') as data_file:
@@ -148,8 +146,11 @@ def Loading_Game_Data(file_name, selected_sci_list):
         response_list = list(csv_reader)
     
     print("response list", response_list)
+
+    # deleting the first two rows -- index and questions -- so i only have the scientists present in the list thats why I am deleting 0 twice
     del response_list[0]
-    del response_list[1]
+    del response_list[0]
+    del response_list[-1]
     print("response list", response_list)
 
     for people in response_list:
