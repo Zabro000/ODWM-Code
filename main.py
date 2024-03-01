@@ -101,7 +101,7 @@ def Loading_Game_Data(file_name, selected_sci_list):
     #this will look for the main responses list file
     #This code will look to see if the game file exists 
     questions_list = []
-    reposes_list
+    reposes_list = []
 
     file_path = f'./{file_name}'
     file_state = os.path.isfile(file_path)
@@ -113,6 +113,19 @@ def Loading_Game_Data(file_name, selected_sci_list):
             print("The file is created!")
     else:
         print("Game file found")
+
+    with open(file_name, 'r') as data_file:
+        csv_reader = csv.reader(data_file)
+        questions_list = list(csv_reader)
+        questions_list = questions_list[1]
+        del questions_list[0]
+        del questions_list[-1]
+
+    print(questions_list)
+
+
+
+
 
     # for all scientists selected, use their number name index to load reponses to the questions and make it a new attrubute to them
 
@@ -146,6 +159,8 @@ while len(selected_sci_list) < 1:
     selected_sci_list = Scientist_Sort(scientist_list)
 
 Name_Print(selected_sci_list)
+
+Loading_Game_Data(game_file_name, selected_sci_list)
 
 
 
