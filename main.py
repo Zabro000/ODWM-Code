@@ -123,6 +123,8 @@ def Game(sci_list):
             if sci_list[i].diploma_expariment == True:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
+
+    print(len(sci_list))
     
     print("This is the final list of scientists in the game:")
     
