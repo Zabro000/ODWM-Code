@@ -114,6 +114,8 @@ def Loading_Game_Data(file_name, selected_sci_list):
     else:
         print("Game file found")
 
+    # for all scientists selected, use their number name index to load reponses to the questions and make it a new attrubute to them
+
 
 
     return questions_list
