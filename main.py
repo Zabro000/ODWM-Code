@@ -40,6 +40,11 @@ class Scientist:
         Units = ["forces and fields", "EMR", "atomic"]
         print(f"This Scientists name is {self.name} and they are found in {Units[self.unit -1]}")
 
+    #Assigns and creates response attruibute for only the scientists in the game
+    def response_asign(self, list):
+        self.response = list
+        print("here are my responses", self.response)
+
 
     def load_description(self):
         pass
@@ -101,7 +106,6 @@ def Loading_Game_Data(file_name, selected_sci_list):
     #this will look for the main responses list file
     #This code will look to see if the game file exists 
     questions_list = []
-    response_list = []
 
     file_path = f'./{file_name}'
     file_state = os.path.isfile(file_path)
@@ -138,23 +142,34 @@ def Loading_Game_Data(file_name, selected_sci_list):
         except:
             # if there is a none then do nothing and continue through the list
             pass
-        
+    
     print("QUESTIONS LIST  ", questions_list)
+    return questions_list
+        
+
+# Goal of this function is to assign each list of responses to the scientists loaded objects
+def Loading_Question_Responses(file_name, selected_sci_list):
 
     with open(file_name, 'r') as data_file:
         csv_reader = csv.reader(data_file)
         response_list = list(csv_reader)
     
-    print("response list", response_list)
-
     # deleting the first two rows -- index and questions -- so i only have the scientists present in the list thats why I am deleting 0 twice
     del response_list[0]
     del response_list[0]
     del response_list[-1]
     print("response list", response_list)
 
-    for people in response_list:
-        pass
+    for responder in response_list:
+        temp_small_list = responder
+        for scientist in selected_sci_list:
+            if scientist.name == temp_small_list[0]:
+                scientist.response_asign(temp_small_list)
+
+   
+        
+
+
 
 
 
@@ -166,7 +181,6 @@ def Loading_Game_Data(file_name, selected_sci_list):
 
 
 
-    return questions_list
 
 
 def Name_Print(name_list):
@@ -185,7 +199,7 @@ sci_2 = Scientist("Faraday",2,2,None,0,1,None)
 sci_25 = Scientist("Faradayyy",2,2,None,0,1,None)
 sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
 sci_4 = Scientist("Henry",4,2,None,0,1,None)
-sci_5 = Scientist("Enstein",5,3,None,0,1,None)
+sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 
 scientist_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
 selected_sci_list = []
@@ -196,6 +210,9 @@ while len(selected_sci_list) < 1:
 Name_Print(selected_sci_list)
 
 Loading_Game_Data(game_file_name, selected_sci_list)
+
+Loading_Question_Responses(game_file_name, selected_sci_list)
+
 
 
 
