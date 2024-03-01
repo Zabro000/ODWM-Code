@@ -3,41 +3,8 @@
 import csv
 import os.path
 
-#This is the function that creates, opens, and handles the main list of questions and scientist's reponsies to them and esnures all the elements in the rows are filled out
-#This function will also asign or read the row numbers assosiated with each scientist
 
-Gamefile_Name = "Questions_and_Answers.csv"
-def Game_list(File_Name):
-    #this will look for the main responses list file
-    #This code will look to see if the game file exists 
-
-    FIle_Path = f'./{File_Name}'
-    File_State = os.path.isfile(FIle_Path)
-    print(File_State)
-
-    if File_State == False:
-        print("The game file is missing!!!!, attempting to create a new one")
-        with open(File_Name,'x'):
-            print("The file is created!")
-    else:
-        print("Game file found")
-
-
-    
-    #printing quesiton lists
-
-
-# given the game intro prarameters if zero scientists fit raise error 
-
-#def Csv(File_Name):
-   # with open(File_Name, 'w') as File:
-        #Writer = csv.writer(File)
-        #Headers = [["index"], ["llll"]]
-       # Length = len(Headers)
-
-       # for i in range(Length):
-         #   Writer.writerow(Headers[i])    
-        
+#This function will handle the "front screen"       
 def Game_Intro():
     print("Welcome to the ODWM gesser game! I the computer will guess what physicist you are thinking of!")
     print("To start this game you need to set some settings")
@@ -50,9 +17,6 @@ def Game_Intro():
     
     return odwm, unit, diploma
    
-    #This function will handle the "front screen"
-
-
 
 class Scientist:
 
@@ -88,7 +52,7 @@ class Scientist:
     def Game_code(scientists):
         od, unit, diploma_exp = Game_Intro()
 
-def Game(sci_list):
+def Scientist_Sort(sci_list):
 
     man, unit, dip = Game_Intro()
     man = int(man)
@@ -124,21 +88,46 @@ def Game(sci_list):
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
 
-    print(len(sci_list))
-    
-    print("This is the final list of scientists in the game:")
-    
-    for i in sci_list:
-        print(i.name)
-                #sci_list = sci_list.pop(i)
+    return sci_list
                 
 
-    
+
+#This is the function that creates, opens, and handles the main list of questions and scientist's reponsies to them and esnures all the elements in the rows are filled out
+#This function will also asign or read the row numbers assosiated with each scientist
+#How do I load the questions and the socres?
+
+game_file_name = "Questions_and_Answers.csv"
+def Loading_Game_Data(file_name, selected_sci_list):
+    #this will look for the main responses list file
+    #This code will look to see if the game file exists 
+    questions_list = []
+    reposes_list
+
+    file_path = f'./{file_name}'
+    file_state = os.path.isfile(file_path)
+    print(file_state)
+
+    if file_state == False:
+        print("The game file is missing!!!!, attempting to create a new one")
+        with open(file_name,'x'):
+            print("The file is created!")
+    else:
+        print("Game file found")
 
 
-       
 
-    
+    return questions_list
+
+
+def Name_Print(name_list):
+    for people in name_list:
+        print(people.name)
+
+
+
+
+
+
 
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
@@ -148,15 +137,17 @@ sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
 sci_4 = Scientist("Henry",4,2,None,0,1,None)
 sci_5 = Scientist("Enstein",5,3,None,0,1,None)
 
-sci_object_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
+scientist_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
+selected_sci_list = []
+
+while len(selected_sci_list) < 1:
+    selected_sci_list = Scientist_Sort(scientist_list)
+
+Name_Print(selected_sci_list)
 
 
-Game(sci_object_list)
 
 
-#Csv(Gamefile_Name)
 
-
-#### To do  different sets of questions for each unit some how split it up
-
+    
 
