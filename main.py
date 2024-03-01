@@ -101,7 +101,7 @@ def Loading_Game_Data(file_name, selected_sci_list):
     #this will look for the main responses list file
     #This code will look to see if the game file exists 
     questions_list = []
-    reposes_list = []
+    response_list = []
 
     file_path = f'./{file_name}'
     file_state = os.path.isfile(file_path)
@@ -114,14 +114,37 @@ def Loading_Game_Data(file_name, selected_sci_list):
     else:
         print("Game file found")
 
+
+    for people in selected_sci_list:
+        names_list = str(people.name)
+    
+    print("names of selected people:", names_list)
+
     with open(file_name, 'r') as data_file:
         csv_reader = csv.reader(data_file)
         questions_list = list(csv_reader)
         questions_list = questions_list[1]
-        del questions_list[0]
-        del questions_list[-1]
+    del questions_list[0]
+    del questions_list[-1]
+
+    #Loading in the spific question from the selected scientist
+
 
     print(questions_list)
+
+    with open(file_name, 'r') as data_file:
+        csv_reader = csv.reader(data_file)
+        response_list = list(csv_reader)
+    
+    print("response list", response_list)
+    del response_list[0]
+    del response_list[1]
+    print("response list", response_list)
+
+    for people in response_list:
+        pass
+
+
 
 
 
