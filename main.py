@@ -118,7 +118,7 @@ def Loading_Game_Data(file_name, selected_sci_list):
     for people in selected_sci_list:
         names_list = str(people.name)
     
-    print("names of selected people:", names_list)
+    #print("names of selected people:", names_list)
 
     with open(file_name, 'r') as data_file:
         csv_reader = csv.reader(data_file)
@@ -127,10 +127,21 @@ def Loading_Game_Data(file_name, selected_sci_list):
     del questions_list[0]
     del questions_list[-1]
 
-    #Loading in the spific question from the selected scientist
+    #Parses each question in list of questions from each scienist
+    for people in selected_sci_list:
+        temp_list = people.questions
+        # for loop to parse every question in the list from a scientist
+        # try statement to handle if in the list of question there is a None type
+        try:
+            for element in temp_list:
+                 questions_list.append(element)
+        except:
+            # if there is a none then do nothing and continue through the list
+            pass
+        
 
 
-    print(questions_list)
+    print("QUESTIONS LIST  ", questions_list)
 
     with open(file_name, 'r') as data_file:
         csv_reader = csv.reader(data_file)
