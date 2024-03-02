@@ -1,7 +1,7 @@
-Index, 1
-Question, Did they work to prove relationships between Fe and charges or radii?, 
-Millikan, 5
-Coulomb, 10
-Faraday, -10
-Henry, -20
-Einstein, -20
+Index, 1,2,3,4,5
+Question, Did I build off of Faraday’s electroplating work and the number of coulombs per mole?, is a uniform electric field important to my experiment?, Is a non uniform electric field important to my experiment?, Did my discovery reveal the structure of the atom like how the mass of the electron is significantly smaller than the mass of the proton/ nucleus?, Did I build off of Einstein’s work?
+Millikan, 10, 10, -5, 10, 10
+Coulomb,  -10, 0, 10, -10, -10
+Faraday, 0, -10, 0, 0, -10
+Henry, -10, 0, 0, 0, 0
+Einstein, -10, -10, 0, -10, -10

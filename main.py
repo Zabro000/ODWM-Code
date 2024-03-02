@@ -193,8 +193,9 @@ def Name_Print(name_list):
 
 
 
+sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
 
-sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, ["Did I first decide to use water droplets for my 1909 expariment", "I used the charge to mass ratio, figured out by JJ Thopmson for my expariement"])
+sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,None)
 sci_25 = Scientist("Faradayyy",2,2,None,0,1,None)
 sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
@@ -213,6 +214,7 @@ Loading_Game_Data(game_file_name, selected_sci_list)
 
 Loading_Question_Responses(game_file_name, selected_sci_list)
 
+print(sci_3.response)
 
 
 
