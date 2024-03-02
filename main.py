@@ -6,8 +6,13 @@ import os.path
 
 #This function will handle the "front screen"       
 def Game_Intro():
-    print("Welcome to the ODWM gesser game! I the computer will guess what physicist you are thinking of!")
-    print("To start this game you need to set some settings")
+    print("Welcome to the ODWM gesser game! I, the computer will guess what physicist you are thinking of!")
+    # print out some rules and maybe some code so I can play
+
+
+
+def Game_Settings():
+    print("here are the game settings")
     print("Do you want only ODWM?")
     odwm = input()
     print("What physics unit do you want? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic")
@@ -58,7 +63,7 @@ class Scientist:
 
 def Scientist_Sort(sci_list):
 
-    man, unit, dip = Game_Intro()
+    man, unit, dip = Game_Settings()
     man = int(man)
     dip = int(dip)
     unit = int(unit)
@@ -118,11 +123,6 @@ def Loading_Game_Data(file_name, selected_sci_list):
     else:
         print("Game file found")
 
-
-    for people in selected_sci_list:
-        names_list = str(people.name)
-    
-    #print("names of selected people:", names_list)
 
     with open(file_name, 'r') as data_file:
         csv_reader = csv.reader(data_file)
@@ -205,8 +205,15 @@ sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 scientist_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
 selected_sci_list = []
 
-while len(selected_sci_list) < 1:
+#runs the filter selection code so and lets user know about how big the game will be
+#if less than or equal to one scientist is in the game that wouldnt be that fun so the user will choose new filter parameters
+Game_Intro()
+
+while len(selected_sci_list) <= 1:
     selected_sci_list = Scientist_Sort(scientist_list)
+    print(f"The parameters you selected resulted in {len(selected_sci_list)} scientists present in the game")
+    if len(selected_sci_list) <= 1:
+        print("Pick new filtes because that number of scientists wouldnt be fun to play with")
 
 Name_Print(selected_sci_list)
 
