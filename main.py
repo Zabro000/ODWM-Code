@@ -34,6 +34,15 @@ class Scientist:
         self.response = list
         print("here are my responses", self.response)
 
+    def setting_in_game_questions(self):
+        self.game_questions = self.questions 
+
+    def del_question(self, index):
+        try: 
+            del self.game_questions[index]
+        except:
+            print("Propbably no more questions")
+
 
     def load_description(self):
         pass
@@ -267,6 +276,10 @@ print(sci_3.response)
 
 print("The game is now startingggg")
 time.sleep(2)
+
+for people in selected_sci_list:
+    people.setting_in_game_questions
+
 
 while True:
 
