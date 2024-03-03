@@ -33,6 +33,7 @@ class Scientist:
 
     #Assigns and creates response attruibute for only the scientists in the game
     def response_asign(self, list):
+        del list[0]
         self.response = list
         print("here are my responses", self.response)
 
@@ -152,7 +153,7 @@ def Loading_Question_Responses(file_name, selected_sci_list):
     # deleting the first two rows -- index and questions -- so i only have the scientists present in the list thats why I am deleting 0 twice
     del response_list[0]
     del response_list[0]
-    del response_list[-1]
+    #del response_list[-1] This would cause the last person in the list to be deleted and cause issues
     print("response list", response_list)
 
     # for all scientists selected, use their number name index to load reponses to the questions and make it a new attrubute to them
@@ -260,7 +261,7 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
 
     if user_answer == 1:
         for scientist in sci_in_game:
-            print(scientist.__dict__)
+            print("checking who is in the game: ", scientist.__dict__)
         for people in sci_in_game:
             people.Score += int(people.response[question_index])
             print("Here is my new score ", scientist.Score)
@@ -322,14 +323,12 @@ questions_dump = Loading_Game_Data(game_file_name, selected_sci_list)
 
 Loading_Question_Responses(game_file_name, selected_sci_list)
 
-print(sci_3.response)
 
 print("The game is now startingggg")
 time.sleep(2)
 
 for people in selected_sci_list:
     people.setting_in_game_questions()
-    print("HERE ARE THE SELECTED SCI::: ")
 
 print("HERE ARE THE SELECTED SCI::: ")
 for people in selected_sci_list:
@@ -363,3 +362,5 @@ while True:
 
 ### issues to fix why is henry comin up so much in the terminal? 
 #### why doent Enistin have a response?
+#Why does the spific question picker sometimes break?
+#Remove the first index of the response list, the name of the scientist
