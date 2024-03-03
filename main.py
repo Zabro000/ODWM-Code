@@ -9,6 +9,8 @@ import time
    
 class Scientist:
 
+    Starting_Score = 0
+
     def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
         self.name = name
         self.num = num_name
@@ -42,6 +44,9 @@ class Scientist:
             del self.game_questions[index]
         except:
             print("Propbably no more questions")
+
+    def inital_score(self):
+        self.score = Scientist.Starting_Score
 
 
     def load_description(self):
@@ -233,7 +238,7 @@ def Specific_Question_Picker(sci_in_game):
             question_list_length = len(selected_sci.game_questions)
             break
 
-    print("question_list_length", question_list_length)
+    #print("question_list_length", question_list_length)
 
     temp_question_decision = randint(0, question_list_length)
 
@@ -251,8 +256,13 @@ def Specific_Question_Picker(sci_in_game):
 
 
 #Handles assigning general score values for a general question
-def General_Score_Assign(sci_in_game):
-    pass
+def General_Score_Assign(sci_in_game, question_index):
+    print("Now assigning general score")
+
+    for scientist in sci_in_game:
+        scientist
+
+    
 
 
 
@@ -279,7 +289,7 @@ blacklist = []
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+print(sci_1.Starting_Score)
 
 Game_Intro()
 
