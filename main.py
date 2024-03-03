@@ -232,7 +232,8 @@ def Specific_Question_Picker(sci_in_game):
         if selected_sci.game_questions == None or len(selected_sci.game_questions) < 0:
             pass
         else:
-            question_list_length = len(selected_sci.game_questions)
+            #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
+            question_list_length = len(selected_sci.game_questions) - 1 
             break
 
     #print("question_list_length", question_list_length)
@@ -264,7 +265,7 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
             print("checking who is in the game: ", scientist.__dict__)
         for people in sci_in_game:
             people.Score += int(people.response[question_index])
-            print("Here is my new score ", scientist.Score)
+            print(f"Here is {people.name}'s new score: {scientist.Score}")
             print("Here is my dict.", scientist.__dict__)
 
     elif user_answer == 0:
@@ -325,7 +326,9 @@ Loading_Question_Responses(game_file_name, selected_sci_list)
 
 
 print("The game is now startingggg")
-time.sleep(2)
+for i in range(7):
+    print(".")
+    time.sleep(0.5)
 
 for people in selected_sci_list:
     people.setting_in_game_questions()
@@ -343,7 +346,7 @@ while True:
     temp_question_type = randint(0,1)
     if temp_question_type == 0:
         user_answer, chosen_question_index, blacklist = General_Question_Picker(questions_dump, blacklist)
-        General_Score_Assign(selected_sci_list,chosen_question_index,user_answer)
+        General_Score_Assign(selected_sci_list, chosen_question_index, user_answer)
 
     elif temp_question_type == 1:
         user_answer = Specific_Question_Picker(selected_sci_list)
