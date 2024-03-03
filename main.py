@@ -173,36 +173,47 @@ def Loading_Question_Responses(file_name, selected_sci_list):
 
 
 # 0 will be for general questions and 1 will be for spefic questions
-def General_Question_Picker(sci_in_game, general_questions_list):
-    temp_type_decision = randint(0,1)
+def General_Question_Picker(general_questions_list):
     user_response = 0
 
     #General question code, it will select 
-    if temp_type_decision == 0:
+    
 
-        #check if this gives the range of all indices of the questions list
-        general_questions_length = len(general_questions_list) - 1
-        temp_decision = randint(0, general_questions_list)
-        temp_question = general_questions_list[temp_decision]
+    #check if this gives the range of all indices of the questions list
+    general_questions_length = len(general_questions_list) - 1
+    temp_decision = randint(0, general_questions_length)
+    temp_question = general_questions_list[temp_decision]
 
         #Gets rid of general question just so there isnt any repeats  
-        del general_questions_list[temp_decision]
+    del general_questions_list[temp_decision]
 
-        print('\n')
-        print(f"{temp_question} Is this true or false?")
-        user_response = input()
+    print('\n')
+    print(f"{temp_question} Is this true or false?")
+    user_response = input()
 
-        return user_response, temp_type_decision, general_questions_list
+    return user_response, general_questions_list
     
-    if temp_type_decision == 1: 
-        scientist_list_length = len(sci_in_game) - 1
-
-        temp_sci_decision = randint(0, scientist_list_length)
-        selected_sci = sci_in_game[temp_sci_decision]
+   
 
         
 def Specific_Question_Picker(sci_in_game):
-    pass
+    scientist_list_length = len(sci_in_game) - 1
+
+    temp_sci_decision = randint(0, scientist_list_length)
+    selected_sci = sci_in_game[temp_sci_decision]
+
+
+    #To handle if a scientist object has a None for its special questions attrubute, probably won't be necessary further into development but oh well
+    try:
+        question_list_length = len(selected_sci.questions)
+    except:
+        print("This scientist has NO special questions")
+        return
+    
+    temp_question_decision = randint(0, question_list_length)
+    question 
+    
+
 
 
 
