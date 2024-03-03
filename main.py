@@ -235,15 +235,21 @@ def Specific_Question_Picker(sci_in_game):
     while True:
         temp_sci_decision = randint(0, scientist_list_length)
         selected_sci = sci_in_game[temp_sci_decision]
+        error_count = 0
 
         #Extra condition in if statement makes sure the even if the scientst had questions is still has something to choose from
         #This could cause infinate loop issues if there are no scientists with questions left but oh well
         if selected_sci.game_questions == None or len(selected_sci.game_questions) <= 0:
+            error_count += 1
             pass
         else:
             #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
             question_list_length = len(selected_sci.game_questions) - 1 
             break
+        
+        #this isnt the right error for this issue but it will let me know
+        if error_count > 100:
+            raise LookupError
 
     #print("question_list_length", question_list_length)
 
@@ -320,7 +326,7 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
 
     
 
-    
+
 game_file_name = "Questions_and_Answers.csv"
 
 sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
