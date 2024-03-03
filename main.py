@@ -98,7 +98,6 @@ def Scientist_Sort(sci_list):
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
 
-
     if dip == 1:
         print("Only scientists whose expariments are on the diploma selected")
         sci_list2 = []
@@ -113,7 +112,7 @@ def Scientist_Sort(sci_list):
 
 
  
-#The goal of this function is to build the big list of questions that will be the base for the game
+#This function only checks if there is a game file present and imports general questions from csv
 def Loading_Game_Data(file_name, selected_sci_list):
     #this will look for the main responses list file
     #This code will look to see if the game file exists 
@@ -126,7 +125,7 @@ def Loading_Game_Data(file_name, selected_sci_list):
     if file_state == False:
         print("The game file is missing!!!!, attempting to create a new one")
         with open(file_name,'x'):
-            print("The file is created!")
+            print("The file is created! It is a little empty don't you think?")
     else:
         print("Game file found")
 
@@ -136,20 +135,8 @@ def Loading_Game_Data(file_name, selected_sci_list):
         questions_list = list(csv_reader)
         questions_list = questions_list[1]
     del questions_list[0]
-    del questions_list[-1]
+    #del questions_list[-1] this code just delets the last question-- not helpful
 
-    #Parses each question in list of questions from each scienist
-    for people in selected_sci_list:
-        temp_list = people.questions
-        # for loop to parse every question in the list from a scientist
-        # try statement to handle if in the list of question there is a None type
-        try:
-            for element in temp_list:
-                 questions_list.append(element)
-        except:
-            # if there is a none then do nothing and continue through the list
-            pass
-    
     print("QUESTIONS LIST  ", questions_list)
     return questions_list
         
@@ -188,10 +175,14 @@ def General_Question_Picker(general_questions_list, blacklist):
     #General question code, it will select 
     
 
-    #check if this gives the range of all indices of the questions list
+    #yep, this line of code returns the last index of the last question in the list
     general_questions_length = len(general_questions_list) - 1
 
+    print("general, questions length, this should be the index of last thing in the list ", general_questions_length)
+    print(general_questions_list[general_questions_length])
+
     print("HERE IS QUESTIONS LIST:::  ", general_questions_list)
+
     
     #makes the randint run until it picks a number that corisponds to an index of a question that has not been picked before 
     while True:
@@ -223,24 +214,30 @@ def General_Question_Picker(general_questions_list, blacklist):
 
 #This code handles if a specific question was chosen to be asked       
 def Specific_Question_Picker(sci_in_game):
-    scientist_list_length = len(sci_in_game) - 1
-
-    temp_sci_decision = randint(0, scientist_list_length)
-    selected_sci = sci_in_game[temp_sci_decision]
     user_response = 0
 
-
-    #To handle if a scientist object has a None for its special questions attrubute, probably won't be necessary further into development but oh well
-    try:
-        question_list_length = len(selected_sci.questions)
-    except:
-        print("This scientist has NO special questions")
-        return
+    scientist_list_length = len(sci_in_game) - 1
     
+    #enures that a scientist with specific questions gets picked IT DOES NOT ENSURE SCI STILL HAS QUESTIONS
+    while True:
+        temp_sci_decision = randint(0, scientist_list_length)
+        selected_sci = sci_in_game[temp_sci_decision]
+        
+        try:
+            question_list_length = len(selected_sci.game_questions)
+        #Continues the while loop to try and hope to get a scient
+        except:
+            pass
+        #if the input is good then break
+        finally:
+            break
+
     temp_question_decision = randint(0, question_list_length)
-    selected_question = selected_sci.questions[temp_question_decision]
+
+    selected_question = selected_sci.game_questions[temp_question_decision]
+
     selected_sci.del_question(temp_question_decision)
-    print("Here are my questions remaining: ", selected_sci.questions)
+    print("Here are my questions remaining: ", selected_sci.game_questions)
 
     print('\n')
     print(f"{selected_question} Is this true or false?")
