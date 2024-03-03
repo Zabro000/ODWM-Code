@@ -200,16 +200,19 @@ def General_Question_Picker(general_questions_list):
     print(f"{temp_question} Is this true or false?")
     user_response = input()
 
-    return user_response, general_questions_list
+
+    #Code returns the index of the question it askes 
+    return user_response, general_questions_list, temp_decision
     
    
 
-        
+#This code handles if a specific question was chosen to be asked       
 def Specific_Question_Picker(sci_in_game):
     scientist_list_length = len(sci_in_game) - 1
 
     temp_sci_decision = randint(0, scientist_list_length)
     selected_sci = sci_in_game[temp_sci_decision]
+    user_response = 0
 
 
     #To handle if a scientist object has a None for its special questions attrubute, probably won't be necessary further into development but oh well
@@ -220,13 +223,19 @@ def Specific_Question_Picker(sci_in_game):
         return
     
     temp_question_decision = randint(0, question_list_length)
-    question 
-    
+    selected_question = selected_sci.questions[temp_question_decision]
+    selected_sci.del_question(temp_question_decision)
+    print("Here are my questions remaining: ", selected_sci.questions)
+
+    print('\n')
+    print(f"{selected_question} Is this true or false?")
+    user_response = input()
+
+    return user_response
 
 
-
-
-
+#Handles assigning general score values for a general question
+def General_Score_Assign(sci_in_game):
 
 
 
@@ -286,7 +295,13 @@ while True:
     # 0 will be for general questions and 1 will be for spefic questions 
     temp_question_type = randint(0,1)
     if temp_question_type == 0:
-        General_Question_Picker()
+        user_answer, remaing_questions = General_Question_Picker(questions_dump)
+
+    elif temp_question_type == 1:
+        user_answer = Specific_Question_Picker(selected_sci_list)
+
+    
+
 
 
 
