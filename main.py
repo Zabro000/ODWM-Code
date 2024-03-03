@@ -237,7 +237,8 @@ def Specific_Question_Picker(sci_in_game):
         selected_sci = sci_in_game[temp_sci_decision]
 
         #Extra condition in if statement makes sure the even if the scientst had questions is still has something to choose from
-        if selected_sci.game_questions == None or len(selected_sci.game_questions) < 0:
+        #This could cause infinate loop issues if there are no scientists with questions left but oh well
+        if selected_sci.game_questions == None or len(selected_sci.game_questions) <= 0:
             pass
         else:
             #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
@@ -267,7 +268,7 @@ def Specific_Question_Picker(sci_in_game):
 
     selected_sci.del_question(temp_question_decision)
 
-    return user_response
+    return user_response, selected_sci
 
 
 #Handles assigning general score values for a general question
@@ -295,8 +296,31 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
             print(f"Here is {scientist.name}'s new score {scientist.Score}")
 
 
+def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
+    print("Now assiging a specific, heavy score")
 
+    #If the user answers true, then it is a good chance this is the scientist they are thinkinh of and not any others
+    #So this scientist gets a large score but the others get a negitive score
+    #print(f"The selected scientist is {selected_scientist.name}")
+    
+    if user_answer == 1: 
+        selected_scientist.Score += 20
+        sci_in_game.remove(selected_scientist)
+        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}")
+        
+        for others in sci_in_game:
 
+            others.Score += -20
+            print(f"Here is {others.name}'s new score {others.Score}")
+    
+    #Only the score of the scientist changes, just becuase this question is false doesnt mean the other scientists are right
+    elif user_answer == 0:
+        selected_scientist.Score += -20
+        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}") 
+
+    
+
+    
 game_file_name = "Questions_and_Answers.csv"
 
 sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
@@ -364,7 +388,9 @@ while True:
         General_Score_Assign(selected_sci_list, chosen_question_index, user_answer)
 
     elif temp_question_type == 1:
-        user_answer = Specific_Question_Picker(selected_sci_list)
+        user_answer, chosen_scientist = Specific_Question_Picker(selected_sci_list)
+        Specific_Score_Assign(user_answer, chosen_scientist, selected_sci_list)
+
 
     
 
