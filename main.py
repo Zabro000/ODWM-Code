@@ -9,7 +9,7 @@ import time
    
 class Scientist:
 
-    Starting_Score = 0
+    Score = 0
 
     def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
         self.name = name
@@ -44,10 +44,6 @@ class Scientist:
             del self.game_questions[index]
         except:
             print("Propbably no more questions")
-
-    def inital_score(self):
-        self.score = Scientist.Starting_Score
-
 
     def load_description(self):
         pass
