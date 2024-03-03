@@ -182,7 +182,7 @@ def Loading_Question_Responses(file_name, selected_sci_list):
 
 
 # 0 will be for general questions and 1 will be for spefic questions
-def General_Question_Picker(general_questions_list):
+def General_Question_Picker(general_questions_list, blacklist):
     user_response = 0
 
     #General question code, it will select 
@@ -190,11 +190,26 @@ def General_Question_Picker(general_questions_list):
 
     #check if this gives the range of all indices of the questions list
     general_questions_length = len(general_questions_list) - 1
-    temp_decision = randint(0, general_questions_length)
-    temp_question = general_questions_list[temp_decision]
 
-        #Gets rid of general question just so there isnt any repeats  
-    del general_questions_list[temp_decision]
+    print("HERE IS QUESTIONS LIST:::  ", general_questions_list)
+    
+    #makes the randint run until it picks a number that corisponds to an index of a question that has not been picked before 
+    while True:
+        count = 0 
+        temp_decision = randint(0, general_questions_length)
+        for number in blacklist:
+            if temp_decision == number:
+                count += 1 
+        if count < 1:
+            print("break")
+            break
+    
+    #since a question has been picked, that question is now on black list ot prevent repition
+    blacklist.append(temp_decision)
+    print("blacklisted question indces::: ", blacklist)
+
+
+    temp_question = general_questions_list[temp_decision]
 
     print('\n')
     print(f"{temp_question} Is this true or false?")
@@ -202,7 +217,7 @@ def General_Question_Picker(general_questions_list):
 
 
     #Code returns the index of the question it askes 
-    return user_response, general_questions_list, temp_decision
+    return user_response, temp_decision, blacklist
     
    
 
@@ -236,6 +251,7 @@ def Specific_Question_Picker(sci_in_game):
 
 #Handles assigning general score values for a general question
 def General_Score_Assign(sci_in_game):
+    pass
 
 
 
@@ -256,6 +272,7 @@ scientist_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
 questions_dump = []
+blacklist = []
 
 
 #The game code:
@@ -295,7 +312,7 @@ while True:
     # 0 will be for general questions and 1 will be for spefic questions 
     temp_question_type = randint(0,1)
     if temp_question_type == 0:
-        user_answer, remaing_questions = General_Question_Picker(questions_dump)
+        user_answer, chosen_question_index, blacklist = General_Question_Picker(questions_dump, blacklist)
 
     elif temp_question_type == 1:
         user_answer = Specific_Question_Picker(selected_sci_list)
