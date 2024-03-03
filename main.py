@@ -238,6 +238,8 @@ def Specific_Question_Picker(sci_in_game):
 
     temp_question_decision = randint(0, question_list_length)
 
+    print("selected_sci.game_questions, ", selected_sci.game_questions)
+
     selected_question = selected_sci.game_questions[temp_question_decision]
 
     #print(selected_question, "yeahhhhhh")
@@ -252,11 +254,27 @@ def Specific_Question_Picker(sci_in_game):
 
 
 #Handles assigning general score values for a general question
-def General_Score_Assign(sci_in_game, question_index):
+def General_Score_Assign(sci_in_game, question_index, user_answer):
     print("Now assigning general score")
+    user_answer = int(user_answer)
 
-    for scientist in sci_in_game:
-        scientist
+    if user_answer == 1:
+        for scientist in sci_in_game:
+            print(scientist.__dict__)
+        for people in sci_in_game:
+            people.Score += int(people.response[question_index])
+            print("Here is my new score ", scientist.Score)
+            print("Here is my dict.", scientist.__dict__)
+
+    elif user_answer == 0:
+        print("Printing dict of all scientists:", '\n')
+        for scientist in sci_in_game:
+            print(scientist.__dict__)
+        for scientist in sci_in_game:
+            scientist.Score += int(-1 * scientist.response[question_index])
+            print("Here is my new score ", scientist.Score)
+
+
 
     
 
@@ -268,13 +286,12 @@ sci_1_questions = ["Did my experimental apparatus originally use water droplets,
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,None)
-sci_25 = Scientist("Faradayyy",2,2,None,0,1,None)
 sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
 sci_4 = Scientist("Henry",4,2,None,0,1,None)
 sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_25, sci_3, sci_4, sci_5]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
@@ -285,7 +302,7 @@ blacklist = []
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-print(sci_1.Starting_Score)
+print(sci_1.Score, Scientist.Score)
 
 Game_Intro()
 
@@ -312,8 +329,13 @@ time.sleep(2)
 
 for people in selected_sci_list:
     people.setting_in_game_questions()
+    print("HERE ARE THE SELECTED SCI::: ")
 
-print("Here are Millikan's game questions, ", sci_1.game_questions)
+print("HERE ARE THE SELECTED SCI::: ")
+for people in selected_sci_list:
+    print(people.name)
+
+
 
 
 while True:
@@ -322,6 +344,7 @@ while True:
     temp_question_type = randint(0,1)
     if temp_question_type == 0:
         user_answer, chosen_question_index, blacklist = General_Question_Picker(questions_dump, blacklist)
+        General_Score_Assign(selected_sci_list,chosen_question_index,user_answer)
 
     elif temp_question_type == 1:
         user_answer = Specific_Question_Picker(selected_sci_list)
@@ -338,3 +361,5 @@ while True:
 
     
 
+### issues to fix why is henry comin up so much in the terminal? 
+#### why doent Enistin have a response?
