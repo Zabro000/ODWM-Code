@@ -214,34 +214,38 @@ def General_Question_Picker(general_questions_list, blacklist):
 
 #This code handles if a specific question was chosen to be asked       
 def Specific_Question_Picker(sci_in_game):
+    print('\n', "SPECIFIC QUESTION CODE", '\n')
     user_response = 0
 
     scientist_list_length = len(sci_in_game) - 1
+
+    print(scientist_list_length)
     
     #enures that a scientist with specific questions gets picked IT DOES NOT ENSURE SCI STILL HAS QUESTIONS
     while True:
         temp_sci_decision = randint(0, scientist_list_length)
         selected_sci = sci_in_game[temp_sci_decision]
-        
-        try:
-            question_list_length = len(selected_sci.game_questions)
-        #Continues the while loop to try and hope to get a scient
-        except:
+
+        #Extra condition in if statement makes sure the even if the scientst had questions is still has something to choose from
+        if selected_sci.game_questions == None or len(selected_sci.game_questions) < 0:
             pass
-        #if the input is good then break
-        finally:
+        else:
+            question_list_length = len(selected_sci.game_questions)
             break
+
+    print("question_list_length", question_list_length)
 
     temp_question_decision = randint(0, question_list_length)
 
     selected_question = selected_sci.game_questions[temp_question_decision]
 
-    selected_sci.del_question(temp_question_decision)
-    print("Here are my questions remaining: ", selected_sci.game_questions)
+    #print(selected_question, "yeahhhhhh")
 
     print('\n')
     print(f"{selected_question} Is this true or false?")
     user_response = input()
+
+    selected_sci.del_question(temp_question_decision)
 
     return user_response
 
@@ -301,7 +305,9 @@ print("The game is now startingggg")
 time.sleep(2)
 
 for people in selected_sci_list:
-    people.setting_in_game_questions
+    people.setting_in_game_questions()
+
+print("Here are Millikan's game questions, ", sci_1.game_questions)
 
 
 while True:
