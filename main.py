@@ -276,25 +276,24 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
     user_answer = int(user_answer)
 
     if user_answer == 1:
+        print("Printing dict of all scientists:", '\n')
         for scientist in sci_in_game:
-            print("checking who is in the game: ", scientist.__dict__)
+            print(scientist.__dict__)
+        print('\n')
         for people in sci_in_game:
             people.Score += int(people.response[question_index])
-            print(f"Here is {people.name}'s new score: {scientist.Score}")
-            print("Here is my dict.", scientist.__dict__)
+            print(f"Here is {people.name}'s new score {people.Score}")
+            #print("Here is my dict.", scientist.__dict__)
 
     elif user_answer == 0:
         print("Printing dict of all scientists:", '\n')
         for scientist in sci_in_game:
             print(scientist.__dict__)
+        print('\n')
         for scientist in sci_in_game:
-            scientist.Score += int(-1 * scientist.response[question_index])
-            print("Here is my new score ", scientist.Score)
+            scientist.Score += -1*int(scientist.response[question_index])
+            print(f"Here is {scientist.name}'s new score {scientist.Score}")
 
-
-
-
-    
 
 
 
