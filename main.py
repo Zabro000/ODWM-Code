@@ -2,6 +2,10 @@
 
 import csv
 import os.path
+from random import randint
+
+#Just for an aesthetic dealy before the game loop starts
+import time
    
 class Scientist:
 
@@ -165,6 +169,45 @@ def Loading_Question_Responses(file_name, selected_sci_list):
             if scientist.name == small_list[0]:
                 scientist.response_asign(small_list)
 
+            
+
+
+# 0 will be for general questions and 1 will be for spefic questions
+def General_Question_Picker(sci_in_game, general_questions_list):
+    temp_type_decision = randint(0,1)
+    user_response = 0
+
+    #General question code, it will select 
+    if temp_type_decision == 0:
+
+        #check if this gives the range of all indices of the questions list
+        general_questions_length = len(general_questions_list) - 1
+        temp_decision = randint(0, general_questions_list)
+        temp_question = general_questions_list[temp_decision]
+
+        #Gets rid of general question just so there isnt any repeats  
+        del general_questions_list[temp_decision]
+
+        print('\n')
+        print(f"{temp_question} Is this true or false?")
+        user_response = input()
+
+        return user_response, temp_type_decision, general_questions_list
+    
+    if temp_type_decision == 1: 
+        scientist_list_length = len(sci_in_game) - 1
+
+        temp_sci_decision = randint(0, scientist_list_length)
+        selected_sci = sci_in_game[temp_sci_decision]
+
+        
+def Specific_Question_Picker(sci_in_game):
+    pass
+
+
+
+
+
 
 
 game_file_name = "Questions_and_Answers.csv"
@@ -190,6 +233,7 @@ questions_dump = []
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 Game_Intro()
 
 while len(selected_sci_list) <= 1:
@@ -209,6 +253,19 @@ questions_dump = Loading_Game_Data(game_file_name, selected_sci_list)
 Loading_Question_Responses(game_file_name, selected_sci_list)
 
 print(sci_3.response)
+
+print("The game is now startingggg")
+time.sleep(2)
+
+while True:
+
+    # 0 will be for general questions and 1 will be for spefic questions 
+    temp_question_type = randint(0,1)
+    if temp_question_type == 0:
+        General_Question_Picker()
+
+
+
 
 
 
