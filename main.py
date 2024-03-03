@@ -204,9 +204,17 @@ def General_Question_Picker(general_questions_list, blacklist):
 
     temp_question = general_questions_list[temp_decision]
 
+    
     print('\n')
     print(f"{temp_question} Is this true or false?")
-    user_response = input()
+    
+    #While loop so user has to enter 1 or 0
+    while True:
+        user_response = int(input())
+        if user_response == 1 or user_response == 0:
+            break
+        else:
+            print("Not true or false input")
 
 
     #Code returns the index of the question it askes 
@@ -248,7 +256,14 @@ def Specific_Question_Picker(sci_in_game):
 
     print('\n')
     print(f"{selected_question} Is this true or false?")
-    user_response = input()
+
+    #While loop so user has to enter 1 or 0
+    while True:
+        user_response = int(input())
+        if user_response == 1 or user_response == 0:
+            break
+        else:
+            print("Not true or false input")
 
     selected_sci.del_question(temp_question_decision)
 
@@ -275,6 +290,7 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
         for scientist in sci_in_game:
             scientist.Score += int(-1 * scientist.response[question_index])
             print("Here is my new score ", scientist.Score)
+
 
 
 
