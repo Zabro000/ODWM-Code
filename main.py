@@ -4,11 +4,11 @@ import csv
 import os.path
 from random import randint
 
-#Just for an aesthetic dealy before the game loop starts
+#Just for an aesthetic delay before the game loop starts
 import time
    
 class Scientist:
-
+    # Class var for score, just easier this way
     Score = 0
 
     def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
@@ -232,23 +232,24 @@ def Specific_Question_Picker(sci_in_game):
     print(scientist_list_length)
     
     #enures that a scientist with specific questions gets picked IT DOES NOT ENSURE SCI STILL HAS QUESTIONS
+    error_count = 0
     while True:
         temp_sci_decision = randint(0, scientist_list_length)
         selected_sci = sci_in_game[temp_sci_decision]
-        error_count = 0
+        
 
         #Extra condition in if statement makes sure the even if the scientst had questions is still has something to choose from
         #This could cause infinate loop issues if there are no scientists with questions left but oh well
         if selected_sci.game_questions == None or len(selected_sci.game_questions) <= 0:
-            error_count += 1
-            pass
+            error_count = error_count + 1
+            #print("finding ", error_count)
         else:
             #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
             question_list_length = len(selected_sci.game_questions) - 1 
             break
-        
+
         #this isnt the right error for this issue but it will let me know
-        if error_count > 100:
+        if error_count > 2000:
             raise LookupError
 
     #print("question_list_length", question_list_length)
@@ -281,6 +282,7 @@ def Specific_Question_Picker(sci_in_game):
 def General_Score_Assign(sci_in_game, question_index, user_answer):
     print("Now assigning general score")
     user_answer = int(user_answer)
+    print(len(sci_in_game))
 
     if user_answer == 1:
         print("Printing dict of all scientists:", '\n')
@@ -291,6 +293,7 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
             people.Score += int(people.response[question_index])
             print(f"Here is {people.name}'s new score {people.Score}")
             #print("Here is my dict.", scientist.__dict__)
+        
 
     elif user_answer == 0:
         print("Printing dict of all scientists:", '\n')
@@ -309,7 +312,19 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
     #So this scientist gets a large score but the others get a negitive score
     #print(f"The selected scientist is {selected_scientist.name}")
     
-    if user_answer == 1: 
+    print("the selected sci is", selected_scientist.name)
+    if user_answer == 1:
+        for scientists in sci_in_game:
+            scientists.Score += -20
+            print(f"Here is {scientists.name}'s new score {scientists.Score}")
+        selected_scientist.Score += + 40
+        print(f"Here is {selected_scientist.name}'s REAL new score {selected_scientist.Score}")
+
+    elif user_answer == 0:
+        selected_scientist.Score += -20
+        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}") 
+
+    """ if user_answer == 1: 
         selected_scientist.Score += 20
         sci_in_game.remove(selected_scientist)
         print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}")
@@ -317,12 +332,10 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
         for others in sci_in_game:
 
             others.Score += -20
-            print(f"Here is {others.name}'s new score {others.Score}")
+            print(f"Here is {others.name}'s new score {others.Score}") """
     
     #Only the score of the scientist changes, just becuase this question is false doesnt mean the other scientists are right
-    elif user_answer == 0:
-        selected_scientist.Score += -20
-        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}") 
+
 
     
 
@@ -414,3 +427,5 @@ while True:
 #### why doent Enistin have a response?
 #Why does the spific question picker sometimes break?
 #Remove the first index of the response list, the name of the scientist
+# Issue why does Millikan disapeer after a few questions? After all the general questions have been used up Millikan's name disappers and print dict happens
+# At some point in the code Millikan just is removed, also happens when Millikan has a high score
