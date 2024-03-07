@@ -343,15 +343,18 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
 game_file_name = "Questions_and_Answers.csv"
 
 sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
+sci_6_questions =["Did my discovery explain why arc lighting lamps -- the common electrical lighting technology of my time -- varied in their brightness and were inefficient?", "Using my discoveries, did my subsequent patients go on to be used from military anti-aircraft searchlights to more efficient street lamps?", "Was I the first female member of the Institution of Electrical Engineers (Now the Institution of Engineering and Technology?"]
+
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,None)
 sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
 sci_4 = Scientist("Henry",4,2,None,0,1,None)
 sci_5 = Scientist("Einstein",5,3,None,0,1,None)
+sci_6 = Scientist("Ayrton",6,2,None,0,0,sci_6_questions)
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
