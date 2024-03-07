@@ -195,9 +195,11 @@ def General_Question_Picker(general_questions_list, blacklist):
         for number in blacklist:
             if temp_decision == number:
                 count += 1 
-        if count > 1000:
+        #If the count has not moved (if the index selected is new) break the loop
+        if count < 1:
             print("No more things pressent")
             break
+
     
     #since a question has been picked, that question is now on black list ot prevent repition
     blacklist.append(temp_decision)
@@ -248,6 +250,7 @@ def Specific_Question_Picker(sci_in_game):
         else:
             #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
             question_list_length = len(selected_sci.game_questions) - 1 
+            print("QUESTION LIST LENGTH:::", question_list_length)
             break
 
         #this isnt the right error for this issue but it will let me know
@@ -256,7 +259,8 @@ def Specific_Question_Picker(sci_in_game):
             raise LookupError
 
     #print("question_list_length", question_list_length)
-
+    if question_list_length <=1:
+        print("NO SPEFFIC QUESTIONS LEFT")
     temp_question_decision = randint(0, question_list_length)
 
     print("selected_sci.game_questions, ", selected_sci.game_questions)
@@ -339,14 +343,43 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
     
     #Only the score of the scientist changes, just becuase this question is false doesnt mean the other scientists are right
 
-def Guesser(sci_in_game):
 
-    #Creates a 
+#This will return 1 or 0 based on user input or computer logic
+def Guesser(scientist_list):
+    sci_in_game = scientist_list
+
+    #Uses cubing as a math way to measure how fast something diverages and it keeps the sign for me with no additional logic
     for scientist in sci_in_game:
         scientist.Temp_Score = scientist.Score**3
-        print(scientist.Temp_Score)
 
-    pass
+    ## Bubble sort algorithim to sort the list of scientist objects based on the temp score
+    scientist_list_length = len(sci_in_game)
+    for index in range(scientist_list_length):
+
+        for person in range(0, scientist_list_length - index - 1):
+            if sci_in_game[person].Temp_Score > sci_in_game[person+1].Temp_Score:
+                sci_in_game[person], sci_in_game[person+1] = sci_in_game[person+1], sci_in_game[person]
+
+    for scientist in sci_in_game:
+        print(scientist.Temp_Score)
+        
+    highest_score = sci_in_game[-1].Temp_Score
+    second_highest_score = sci_in_game[-2].Temp_Score
+
+    #testing to see the difference in score between the first and the second highest score
+    #if the second highest score is negitive then the first score is DEFFINITALLY the right guess but if the second highest score is positive it could be close
+    if second_highest_score > 0 and (highest_score/second_highest_score > 2):
+        print("I am not confedent of who you were thinking of, answer more questions")
+        return 0 # User decision for no
+    
+    print(f"Then are you thinking of me,{sci_in_game[-1].name}? ")
+    user_decision = input()
+    
+    return user_decision
+
+    
+
+ 
 
     
 
@@ -402,6 +435,8 @@ for i in range(7):
     print(".")
     time.sleep(0.5)
 
+#Runs code so all the scientists in the game have a temp list of their special questions
+#This is useful so the information isnt lost and the game can be reset within the code
 for people in selected_sci_list:
     people.setting_in_game_questions()
 
@@ -424,8 +459,12 @@ while True:
         user_answer, chosen_scientist = Specific_Question_Picker(selected_sci_list)
         Specific_Score_Assign(user_answer, chosen_scientist, selected_sci_list)
 
-    
 
+    game_loop_itterations += 1
+
+    if game_loop_itterations > 3:
+        user_decision = Guesser(selected_sci_list)
+        
     
 
 
@@ -449,3 +488,4 @@ while True:
 # At some point in the code Millikan just is removed, also happens when Millikan has a high score
         
 # Fix code so the response attrubute is innitallized in the start and not created during the code for organization 
+# Maybe make the guesser code not a function
