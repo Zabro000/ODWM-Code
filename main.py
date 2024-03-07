@@ -447,7 +447,9 @@ for people in selected_sci_list:
 
 #This varible counting how many times the loop itterates will be used by the computer to determine when it should make a guess
 game_loop_itterations = 0 
-while True:
+user_guess_decision = 0
+
+while user_guess_decision == 0:
 
     # 0 will be for general questions and 1 will be for spefic questions 
     temp_question_type = randint(0,1)
@@ -464,6 +466,14 @@ while True:
 
     if game_loop_itterations > 3:
         user_decision = Guesser(selected_sci_list)
+        user_guess_decision = int(user_decision)
+        if user_guess_decision == 0:
+            print("You should answer more questions I am not confedent")
+
+        game_loop_itterations = 0 
+
+
+print("Yay I was right!!! The game is now over you should restart it!")
         
     
 
@@ -489,3 +499,5 @@ while True:
         
 # Fix code so the response attrubute is innitallized in the start and not created during the code for organization 
 # Maybe make the guesser code not a function
+# Make the loop better at reseting the questions and score 
+# If the user or the guesser returns a zero, then reset the score of the scientists to remove bias
