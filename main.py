@@ -368,7 +368,7 @@ def Guesser(scientist_list):
 
     #testing to see the difference in score between the first and the second highest score
     #if the second highest score is negitive then the first score is DEFFINITALLY the right guess but if the second highest score is positive it could be close
-    if second_highest_score > 0 and (highest_score/second_highest_score > 2):
+    if second_highest_score > 0 and (highest_score/second_highest_score < 2):
         print("I am not confedent of who you were thinking of, answer more questions")
         return 0 # User decision for no
     
