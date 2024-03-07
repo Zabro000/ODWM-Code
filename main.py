@@ -3,6 +3,7 @@
 import csv
 import os.path
 from random import randint
+import math 
 
 #Just for an aesthetic delay before the game loop starts
 import time
@@ -10,6 +11,7 @@ import time
 class Scientist:
     # Class var for score, just easier this way
     Score = 0
+    Temp_Score = 0
 
     def __init__(self, name, num_name, physics_unit, respose_list, expariment, odwm, special_questions):
         self.name = name
@@ -193,8 +195,8 @@ def General_Question_Picker(general_questions_list, blacklist):
         for number in blacklist:
             if temp_decision == number:
                 count += 1 
-        if count < 1:
-            print("break")
+        if count > 1000:
+            print("No more things pressent")
             break
     
     #since a question has been picked, that question is now on black list ot prevent repition
@@ -250,6 +252,7 @@ def Specific_Question_Picker(sci_in_game):
 
         #this isnt the right error for this issue but it will let me know
         if error_count > 2000:
+            print("NO SPEFIC QUESTIONS FOUND")
             raise LookupError
 
     #print("question_list_length", question_list_length)
@@ -336,6 +339,14 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
     
     #Only the score of the scientist changes, just becuase this question is false doesnt mean the other scientists are right
 
+def Guesser(sci_in_game):
+
+    #Creates a 
+    for scientist in sci_in_game:
+        scientist.Temp_Score = scientist.Score**3
+        print(scientist.Temp_Score)
+
+    pass
 
     
 
@@ -377,7 +388,7 @@ while len(selected_sci_list) <= 1:
     print(f"The parameters you selected resulted in {len(selected_sci_list)} scientists present in the game")
 
     if len(selected_sci_list) <= 1:
-        print("Pick new filtes because that number of scientists wouldnt be fun to play with")
+        print(f"{len(selected_sci_list)} scientist(s) are in the game, pick new filters because that number of scientists isn't fun to play with!")
 
 #Name_Print(selected_sci_list)
 
@@ -399,8 +410,8 @@ for people in selected_sci_list:
     print(people.name)
 
 
-
-
+#This varible counting how many times the loop itterates will be used by the computer to determine when it should make a guess
+game_loop_itterations = 0 
 while True:
 
     # 0 will be for general questions and 1 will be for spefic questions 
@@ -412,6 +423,10 @@ while True:
     elif temp_question_type == 1:
         user_answer, chosen_scientist = Specific_Question_Picker(selected_sci_list)
         Specific_Score_Assign(user_answer, chosen_scientist, selected_sci_list)
+
+    
+
+    
 
 
     
@@ -432,3 +447,5 @@ while True:
 #Remove the first index of the response list, the name of the scientist
 # Issue why does Millikan disapeer after a few questions? After all the general questions have been used up Millikan's name disappers and print dict happens
 # At some point in the code Millikan just is removed, also happens when Millikan has a high score
+        
+# Fix code so the response attrubute is innitallized in the start and not created during the code for organization 
