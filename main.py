@@ -58,10 +58,9 @@ class Scientist:
 
 
 def Game_Settings():
-    print("here are the game settings")
-    print("Do you want only ODWM?")
+    print("Do you only old dead white men (physics 30 curriculum physicists)?")
     odwm = input()
-    print("What physics unit do you want? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic")
+    print("What physicists from which unit do you want to load? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic")
     unit = input()
     print("Do you only want to play with physicists whose expariments are on the diploma?")
     diploma = input()
@@ -373,7 +372,8 @@ def Guesser(scientist_list):
     
     return user_decision
 
-    
+
+
 
  
 
@@ -400,14 +400,23 @@ scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6]
 selected_sci_list = []
 questions_dump = []
 blacklist = []
+message = "THE OLD DEAD WHITE MEN GUESSER GAME"
 
 
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+print(f'{message:>5}:')
 
-Game_Intro()
 
+for i in range(6):
+    print(".")
+    time.sleep(0.5)
+
+
+print("Welcome to the ODWM game! I, the computer will guess what physicist you are thinking of!")
+print("This is the Old Dead White Men Guessing Game! I, the computer will take on the persona of the physicist you are thinking of!")
+print("Now you need to choose some settings!", '\n')
 
 while len(selected_sci_list) <= 1:
     #runs the filter selection code so and lets user know about how big the game will be
@@ -426,10 +435,12 @@ questions_dump = Loading_Game_Data(game_file_name, selected_sci_list)
 Loading_Question_Responses(game_file_name, selected_sci_list)
 
 
-print("The game is now startingggg")
+print("The game is starting, everything is loading in.")
 for i in range(7):
     print(".")
     time.sleep(0.5)
+
+
 
 #Runs code so all the scientists in the game have a temp list of their special questions
 #This is useful so the information isnt lost and the game can be reset within the code
