@@ -37,7 +37,7 @@ class Scientist:
     def response_asign(self, list):
         del list[0]
         self.response = list
-        print("here are my responses", self.response)
+        #print("here are my responses", self.response)
 
     def setting_in_game_questions(self):
         self.game_questions = self.questions 
@@ -58,9 +58,9 @@ class Scientist:
 
 
 def Game_Settings():
-    print("Do you only old dead white men (physics 30 curriculum physicists)?")
+    print("Do you only want old dead white men (physics 30 curriculum physicists)? Note, there are physicists outside of the curriculum too!")
     odwm = input()
-    print("What physicists from which unit do you want to load? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic")
+    print("What physicists from which unit do you want to load? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic.")
     unit = input()
     print("Do you only want to play with physicists whose expariments are on the diploma?")
     diploma = input()
@@ -77,8 +77,8 @@ def Scientist_Sort(sci_list):
     man = int(man)
     dip = int(dip)
     unit = int(unit)
-    print("unit", unit)
 
+    #Filter for old dead white men or people in the course 
     if man == 1:
         sci_list2 = []
         length = len(sci_list)
@@ -86,9 +86,10 @@ def Scientist_Sort(sci_list):
             if sci_list[i].odwm == True:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
-
+    
+    #Filter for what scientists from what unit
     if unit == 1:
-        print("all scientists are selected")
+        pass
     else: 
         sci_list2 = []
         length = len(sci_list)
@@ -96,9 +97,9 @@ def Scientist_Sort(sci_list):
             if unit == sci_list[i].physics_unit:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
-
+   
+    #Filter for scientists whose expariments will be questions on the diploma
     if dip == 1:
-        print("Only scientists whose expariments are on the diploma selected")
         sci_list2 = []
         length = len(sci_list)
         for i in range(length):
@@ -118,15 +119,20 @@ def Loading_Game_Data(file_name, selected_sci_list):
     questions_list = []
 
     file_path = f'./{file_name}'
-    file_state = os.path.isfile(file_path)
-    print(file_state)
 
+    #This method looks to see if the game file is in the same folder as this code
+    file_state = os.path.isfile(file_path)
+
+    #Prints bool for if game file is there or not
+    #print(file_state) 
+
+    #If no game file is pressent in the file then this will create a new one but it will be empty and probably break the game
     if file_state == False:
         print("The game file is missing!!!!, attempting to create a new one")
         with open(file_name,'x'):
             print("The file is created! It is a little empty don't you think?")
     else:
-        print("Game file found")
+        print("Game file found.")
 
 
     with open(file_name, 'r') as data_file:
@@ -136,7 +142,6 @@ def Loading_Game_Data(file_name, selected_sci_list):
     del questions_list[0]
     #del questions_list[-1] this code just delets the last question-- not helpful
 
-    print("QUESTIONS LIST  ", questions_list)
     return questions_list
         
 
@@ -151,7 +156,7 @@ def Loading_Question_Responses(file_name, selected_sci_list):
     del response_list[0]
     del response_list[0]
     #del response_list[-1] This would cause the last person in the list to be deleted and cause issues
-    print("response list", response_list)
+    
 
     # for all scientists selected, use their number name index to load reponses to the questions and make it a new attrubute to them
     for small_list in response_list:
@@ -177,12 +182,7 @@ def General_Question_Picker(general_questions_list, blacklist):
     #yep, this line of code returns the last index of the last question in the list
     general_questions_length = len(general_questions_list) - 1
 
-    print("general, questions length, this should be the index of last thing in the list ", general_questions_length)
-    print(general_questions_list[general_questions_length])
 
-    print("HERE IS QUESTIONS LIST:::  ", general_questions_list)
-
-    
     #makes the randint run until it picks a number that corisponds to an index of a question that has not been picked before 
     while True:
         count = 0 
@@ -192,13 +192,16 @@ def General_Question_Picker(general_questions_list, blacklist):
                 count += 1 
         #If the count has not moved (if the index selected is new) break the loop
         if count < 1:
-            print("No more things pressent")
             break
+        # if the count is alot it probably means there is no questions left
+        elif count > 2000:
+            print("There are no more questions in the list this will cause an error")
+            raise LookupError
 
     
     #since a question has been picked, that question is now on black list ot prevent repition
     blacklist.append(temp_decision)
-    print("blacklisted question indces::: ", blacklist)
+    #print("blacklisted question indces::: ", blacklist)
 
 
     temp_question = general_questions_list[temp_decision]
@@ -213,7 +216,7 @@ def General_Question_Picker(general_questions_list, blacklist):
         if user_response == 1 or user_response == 0:
             break
         else:
-            print("Not true or false input")
+            print("Not true or false input!")
 
 
     #Code returns the index of the question it askes 
@@ -223,12 +226,10 @@ def General_Question_Picker(general_questions_list, blacklist):
 
 #This code handles if a specific question was chosen to be asked       
 def Specific_Question_Picker(sci_in_game):
-    print('\n', "SPECIFIC QUESTION CODE", '\n')
     user_response = 0
 
     scientist_list_length = len(sci_in_game) - 1
 
-    print(scientist_list_length)
     
     #enures that a scientist with specific questions gets picked IT DOES NOT ENSURE SCI STILL HAS QUESTIONS
     error_count = 0
@@ -245,20 +246,19 @@ def Specific_Question_Picker(sci_in_game):
         else:
             #minus one so that it shifts the amount of elements to be how the index of those elements are, question_list_length is the index of last element
             question_list_length = len(selected_sci.game_questions) - 1 
-            print("QUESTION LIST LENGTH:::", question_list_length)
+            #print("QUESTION LIST LENGTH:::", question_list_length)
             break
 
         #this isnt the right error for this issue but it will let me know
         if error_count > 2000:
-            print("NO SPEFIC QUESTIONS FOUND")
+            print("There are no more questions in the list this will cause an error!")
             raise LookupError
 
-    #print("question_list_length", question_list_length)
-    if question_list_length <=1:
-        print("NO SPEFFIC QUESTIONS LEFT")
+
+    # Chooses an index to choose
     temp_question_decision = randint(0, question_list_length)
 
-    print("selected_sci.game_questions, ", selected_sci.game_questions)
+    #print("selected_sci.game_questions, ", selected_sci.game_questions)
 
     selected_question = selected_sci.game_questions[temp_question_decision]
 
@@ -273,7 +273,7 @@ def Specific_Question_Picker(sci_in_game):
         if user_response == 1 or user_response == 0:
             break
         else:
-            print("Not true or false input")
+            print("Not true or false input!")
 
     selected_sci.del_question(temp_question_decision)
 
@@ -281,66 +281,46 @@ def Specific_Question_Picker(sci_in_game):
 
 
 #Handles assigning general score values for a general question
+#If true assigns the score in the list if false the sign of the score is flipped
 def General_Score_Assign(sci_in_game, question_index, user_answer):
-    print("Now assigning general score")
+    #print("Now assigning general score")
     user_answer = int(user_answer)
-    print(len(sci_in_game))
+    #print(len(sci_in_game))
 
     if user_answer == 1:
-        print("Printing dict of all scientists:", '\n')
-        for scientist in sci_in_game:
-            print(scientist.__dict__)
-        print('\n')
         for people in sci_in_game:
             people.Score += int(people.response[question_index])
-            print(f"Here is {people.name}'s new score {people.Score}")
-            #print("Here is my dict.", scientist.__dict__)
+            
         
-
     elif user_answer == 0:
-        print("Printing dict of all scientists:", '\n')
-        for scientist in sci_in_game:
-            print(scientist.__dict__)
-        print('\n')
         for scientist in sci_in_game:
             scientist.Score += -1*int(scientist.response[question_index])
-            print(f"Here is {scientist.name}'s new score {scientist.Score}")
 
 
+ #Only the score of the spific scientist changes, just becuase the user answered false doesnt mean all other scientists are right
 def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
-    print("Now assiging a specific, heavy score")
 
     #If the user answers true, then it is a good chance this is the scientist they are thinkinh of and not any others
     #So this scientist gets a large score but the others get a negitive score
     #print(f"The selected scientist is {selected_scientist.name}")
-    
-    print("the selected sci is", selected_scientist.name)
+
     if user_answer == 1:
         for scientists in sci_in_game:
             scientists.Score += -20
-            print(f"Here is {scientists.name}'s new score {scientists.Score}")
+            
         selected_scientist.Score += + 40
-        print(f"Here is {selected_scientist.name}'s REAL new score {selected_scientist.Score}")
+        
 
     elif user_answer == 0:
         selected_scientist.Score += -20
-        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}") 
-
-    """ if user_answer == 1: 
-        selected_scientist.Score += 20
-        sci_in_game.remove(selected_scientist)
-        print(f"Here is {selected_scientist.name}'s new score {selected_scientist.Score}")
-        
-        for others in sci_in_game:
-
-            others.Score += -20
-            print(f"Here is {others.name}'s new score {others.Score}") """
     
-    #Only the score of the scientist changes, just becuase this question is false doesnt mean the other scientists are right
+    
 
 
 #This will return 1 or 0 based on user input or computer logic
 def Guesser(scientist_list):
+    print('\n')
+
     sci_in_game = scientist_list
 
     #Uses cubing as a math way to measure how fast something diverages and it keeps the sign for me with no additional logic
@@ -355,8 +335,8 @@ def Guesser(scientist_list):
             if sci_in_game[person].Temp_Score > sci_in_game[person+1].Temp_Score:
                 sci_in_game[person], sci_in_game[person+1] = sci_in_game[person+1], sci_in_game[person]
 
-    for scientist in sci_in_game:
-        print(scientist.Temp_Score)
+    #for scientist in sci_in_game:
+        #print(scientist.Temp_Score)
         
     highest_score = sci_in_game[-1].Temp_Score
     second_highest_score = sci_in_game[-2].Temp_Score
@@ -365,9 +345,11 @@ def Guesser(scientist_list):
     #if the second highest score is negitive then the first score is DEFFINITALLY the right guess but if the second highest score is positive it could be close
     if second_highest_score > 0 and (highest_score/second_highest_score < 2):
         print("I am not confedent of who you were thinking of, answer more questions")
-        return 0 # User decision for no
+        
+        # User decision for no
+        return 0 
     
-    print(f"Then are you thinking of me,{sci_in_game[-1].name}? ")
+    print(f"So user, are you thinking of me, {sci_in_game[-1].name}?")
     user_decision = input()
     
     return user_decision
@@ -423,23 +405,12 @@ while len(selected_sci_list) <= 1:
     #if less than or equal to one scientist is in the game that wouldnt be that fun so the user will choose new filter parameters
     
     selected_sci_list = Scientist_Sort(scientist_list)
-    print(f"The parameters you selected resulted in {len(selected_sci_list)} scientists present in the game")
 
+    print(f"The parameters you selected resulted in {len(selected_sci_list)} scientists present in the game.")
+    
+    #If there is only one scientist then that might cause issues and it wont be fun
     if len(selected_sci_list) <= 1:
         print(f"{len(selected_sci_list)} scientist(s) are in the game, pick new filters because that number of scientists isn't fun to play with!")
-
-#Name_Print(selected_sci_list)
-
-questions_dump = Loading_Game_Data(game_file_name, selected_sci_list)
-
-Loading_Question_Responses(game_file_name, selected_sci_list)
-
-
-print("The game is starting, everything is loading in.")
-for i in range(7):
-    print(".")
-    time.sleep(0.5)
-
 
 
 #Runs code so all the scientists in the game have a temp list of their special questions
@@ -447,15 +418,34 @@ for i in range(7):
 for people in selected_sci_list:
     people.setting_in_game_questions()
 
-print("HERE ARE THE SELECTED SCI::: ")
-for people in selected_sci_list:
-    print(people.name)
+print('\n')
+
+#Name_Print(selected_sci_list)
+
+questions_dump = Loading_Game_Data(game_file_name, selected_sci_list)
+
+Loading_Question_Responses(game_file_name, selected_sci_list)
+
+print('\n')
+print("I AM LOADING THE GAME NOW.")
+for i in range(7):
+    print(".")
+    time.sleep(0.5)
+
+print('\n')
+
+
+#print("HERE ARE THE SELECTED SCI::: ")
+#for people in selected_sci_list:
+    #print(people.name)
 
 
 #This varible counting how many times the loop itterates will be used by the computer to determine when it should make a guess
 game_loop_itterations = 0 
 user_guess_decision = 0
 
+
+#This is the loop of questions and answering it runs untill the computer guess right
 while user_guess_decision == 0:
 
     # 0 will be for general questions and 1 will be for spefic questions 
@@ -471,17 +461,16 @@ while user_guess_decision == 0:
 
     game_loop_itterations += 1
 
-    if game_loop_itterations > 3:
+    if game_loop_itterations > 4:
+
         user_decision = Guesser(selected_sci_list)
         user_guess_decision = int(user_decision)
-        if user_guess_decision == 0:
-            print("You should answer more questions I am not confedent")
-
-
         game_loop_itterations = 0 
 
-
+print('\n')
 print("Yay I was right!!! The game is now over you should restart it!")
+print("The ability to restart the game along with other features and more physicists will be coming soon!")
+print('\n')
         
     
 
@@ -496,15 +485,7 @@ print("Yay I was right!!! The game is now over you should restart it!")
 
 
 
-    
 
-### issues to fix why is henry comin up so much in the terminal? 
-#### why doent Enistin have a response?
-#Why does the spific question picker sometimes break?
-#Remove the first index of the response list, the name of the scientist
-# Issue why does Millikan disapeer after a few questions? After all the general questions have been used up Millikan's name disappers and print dict happens
-# At some point in the code Millikan just is removed, also happens when Millikan has a high score
-        
 # Fix code so the response attrubute is innitallized in the start and not created during the code for organization 
 # Maybe make the guesser code not a function
 # Make the loop better at reseting the questions and score 
