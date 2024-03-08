@@ -55,10 +55,6 @@ class Scientist:
         pass
 
 
-#This function will handle the "front screen"       
-def Game_Intro():
-    print("Welcome to the ODWM gesser game! I, the computer will guess what physicist you are thinking of!")
-    # print out some rules and maybe some code so I can play
 
 
 def Game_Settings():
@@ -409,9 +405,9 @@ blacklist = []
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-print(sci_1.Score, Scientist.Score)
 
 Game_Intro()
+
 
 while len(selected_sci_list) <= 1:
     #runs the filter selection code so and lets user know about how big the game will be
@@ -469,6 +465,7 @@ while user_guess_decision == 0:
         user_guess_decision = int(user_decision)
         if user_guess_decision == 0:
             print("You should answer more questions I am not confedent")
+
 
         game_loop_itterations = 0 
 
