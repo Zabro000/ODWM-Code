@@ -1,4 +1,6 @@
-# https://github.com/microsoft/vscode-python/wiki/Activate-Environments-in-Terminal-Using-Environment-Variables ok I am in my own enviroment
+
+#NOTE EINSTEIN IS HERE AS A PLACE HOLDER TO TEST THE FILTER FOR SCIENTISTS FROM SPECIFIC UNITS 
+
 
 import csv
 import os.path
@@ -366,17 +368,21 @@ game_file_name = "Questions_and_Answers.csv"
 
 sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
 sci_6_questions =["Did my discovery explain why arc lighting lamps -- the common electrical lighting technology of my time -- varied in their brightness and were inefficient?", "Using my discoveries, did my subsequent patients go on to be used from military anti-aircraft searchlights to more efficient street lamps?", "Was I the first female member of the Institution of Electrical Engineers (Now the Institution of Engineering and Technology?"]
-
+sci_3_questions = ["Did my work build off of the research by Joseph Priestley?", "Does my equation and subsequent law regarding electricity resemble one to do with gravity?"]
+sci_2_questions = ["Was I the first to discover the process to convert mechanical energy to electrical energy in 1831?"]
+sci_7_questions = ["Did my discovery definitely show electricity and magnetism are linked to each other?"]
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
-sci_2 = Scientist("Faraday",2,2,None,0,1,None)
-sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, None)
+sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
+sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, sci_3_questions)
 sci_4 = Scientist("Henry",4,2,None,0,1,None)
 sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 sci_6 = Scientist("Ayrton",6,2,None,0,0,sci_6_questions)
+sci_7 = Scientist("Oersted",7,2,None,0,1,sci_7_questions)
+
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
