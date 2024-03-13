@@ -1,5 +1,6 @@
 
 #NOTE EINSTEIN IS HERE AS A PLACE HOLDER TO TEST THE FILTER FOR SCIENTISTS FROM SPECIFIC UNITS 
+#AS TIME GOES ON I WILL ADD MORE QUESTIONS FOR THE SCIENTISTS PRESENT
 
 
 import csv
@@ -371,6 +372,7 @@ sci_6_questions =["Did my discovery explain why arc lighting lamps -- the common
 sci_3_questions = ["Did my work build off of the research by Joseph Priestley?", "Does my equation and subsequent law regarding electricity resemble one to do with gravity?"]
 sci_2_questions = ["Was I the first to discover the process to convert mechanical energy to electrical energy in 1831?"]
 sci_7_questions = ["Did my discovery definitely show electricity and magnetism are linked to each other?"]
+sci_8_questions = ["Did my work build off of Rutherford's model of the atom?", "Did my model use data from the light emitted from hydrogen atoms to explain how elections orbited the nucleus?"]
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
@@ -379,10 +381,11 @@ sci_4 = Scientist("Henry",4,2,None,0,1,None)
 sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 sci_6 = Scientist("Ayrton",6,2,None,0,0,sci_6_questions)
 sci_7 = Scientist("Oersted",7,2,None,0,1,sci_7_questions)
+sci_8 = Scientist("Bohr", 8,1,None,0,1,sci_8_questions)
 
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
@@ -467,7 +470,7 @@ while user_guess_decision == 0:
 
     game_loop_itterations += 1
 
-    if game_loop_itterations > 4:
+    if game_loop_itterations > 5:
 
         user_decision = Guesser(selected_sci_list)
         user_guess_decision = int(user_decision)
