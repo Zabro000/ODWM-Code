@@ -332,6 +332,8 @@ def General_Score_Assign(sci_in_game, question_index, user_answer):
     #print("Now assigning general score")
     
     #print(len(sci_in_game))
+    print(f"General_Score_Assign, question_index{question_index}")
+    print(f"General_Score_Assign, user answer bool{user_answer}")
 
     if user_answer == True:
         for people in sci_in_game:
