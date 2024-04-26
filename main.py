@@ -51,22 +51,78 @@ class Scientist:
         except:
             print("Propbably no more questions")
 
-    def load_description(self):
-        pass
-        # this will run at the end of the game, it will load a file with info about scientist and references
-    def create_scientists(self):
-        pass
 
+
+def Bool_Input():
+
+    good_input = False
+
+    while good_input == False:
+        user_bool = input()
+        user_bool = user_bool.lower()
+    
+        if user_bool == "y":
+            user_bool = True
+            good_input = True
+        elif user_bool =="n":
+            user_bool = False
+            good_input = True
+        elif user_bool == "yes":
+            user_bool = True
+            good_input = True
+        elif user_bool == "no":
+            user_bool = False
+            good_input = True
+        elif user_bool == "1":
+            user_bool = True
+            good_input = True
+        elif user_bool == "0":
+            user_bool = False
+            good_input = True
+        else:
+            print("This is a bad input, please try again.", '\n')
+            print("Remember input: “y”, “yes”, or “1” for yes, and input: “n”, “no”, or “0” for false. Capitalizing the letters in your input does not matter, so for example, “YES”, or “nO” would still be a valid input.", '\n')
+    
+
+    return user_bool
 
 
 
 def Game_Settings():
+
+    good_input = False
+
     print("Do you only want old dead white men (physics 30 curriculum physicists)? Note, there are physicists outside of the curriculum too!")
-    odwm = input()
-    print("What physicists from which unit do you want to load? Type 1 for all, type 2 for F&F, type 3 for EMR, type 4 for Atomic.")
-    unit = input()
+    odwm = Bool_Input()
+
+    print("What physicists from which unit do you want to load? Input, 1 for all, 2 for F&F, 3 for EMR, and 4 for Atomic.")
+
+    #I don't use my function for inputs here because the inputs here are not bools
+    while good_input == False:
+        unit = input()
+
+        try:
+            unit = int(unit)
+        except:
+            unit = None
+        
+        if unit == 1:
+            good_input = True
+        elif unit == 2:
+            good_input = True
+        elif unit == 3:
+            good_input = True
+        elif unit == 4:
+            good_input = True
+
+        else:
+            print("This is a bad input, please try again.", '\n')
+            print("Remember input, 1 for all, 2 for F&F, 3 for EMR, and 4 for Atomic.", '\n')
+
+
     print("Do you only want to play with physicists whose expariments are on the diploma?")
-    diploma = input()
+
+    diploma = Bool_Input()
     
     return odwm, unit, diploma
 
@@ -77,12 +133,10 @@ def Name_Print(name_list):
 def Scientist_Sort(sci_list):
 
     man, unit, dip = Game_Settings()
-    man = int(man)
-    dip = int(dip)
-    unit = int(unit)
+
 
     #Filter for old dead white men or people in the course 
-    if man == 1:
+    if man == True:
         sci_list2 = []
         length = len(sci_list)
         for i in range(length):
@@ -90,7 +144,7 @@ def Scientist_Sort(sci_list):
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
     
-    #Filter for what scientists from what unit
+    #Filter scientists from what unit
     if unit == 1:
         pass
     else: 
@@ -102,7 +156,7 @@ def Scientist_Sort(sci_list):
         sci_list = sci_list2
    
     #Filter for scientists whose expariments will be questions on the diploma
-    if dip == 1:
+    if dip == True:
         sci_list2 = []
         length = len(sci_list)
         for i in range(length):
@@ -143,7 +197,7 @@ def Loading_Game_Data(file_name, selected_sci_list):
         questions_list = list(csv_reader)
         questions_list = questions_list[1]
     del questions_list[0]
-    #del questions_list[-1] this code just delets the last question-- not helpful
+    
 
     return questions_list
         
@@ -213,13 +267,7 @@ def General_Question_Picker(general_questions_list, blacklist):
     print('\n')
     print(f"{temp_question} Is this true or false?")
     
-    #While loop so user has to enter 1 or 0
-    while True:
-        user_response = int(input())
-        if user_response == 1 or user_response == 0:
-            break
-        else:
-            print("Not true or false input!")
+    user_response = Bool_Input()
 
 
     #Code returns the index of the question it askes 
@@ -271,12 +319,7 @@ def Specific_Question_Picker(sci_in_game):
     print(f"{selected_question} Is this true or false?")
 
     #While loop so user has to enter 1 or 0
-    while True:
-        user_response = int(input())
-        if user_response == 1 or user_response == 0:
-            break
-        else:
-            print("Not true or false input!")
+    user_response = Bool_Input()
 
     selected_sci.del_question(temp_question_decision)
 
@@ -287,15 +330,15 @@ def Specific_Question_Picker(sci_in_game):
 #If true assigns the score in the list if false the sign of the score is flipped
 def General_Score_Assign(sci_in_game, question_index, user_answer):
     #print("Now assigning general score")
-    user_answer = int(user_answer)
+    
     #print(len(sci_in_game))
 
-    if user_answer == 1:
+    if user_answer == True:
         for people in sci_in_game:
             people.Score += int(people.response[question_index])
             
         
-    elif user_answer == 0:
+    elif user_answer == False:
         for scientist in sci_in_game:
             scientist.Score += -1*int(scientist.response[question_index])
 
@@ -307,15 +350,18 @@ def Specific_Score_Assign(user_answer, selected_scientist, sci_in_game):
     #So this scientist gets a large score but the others get a negitive score
     #print(f"The selected scientist is {selected_scientist.name}")
 
-    if user_answer == 1:
+    if user_answer == True:
         for scientists in sci_in_game:
             scientists.Score += -20
             
         selected_scientist.Score += + 40
         
 
-    elif user_answer == 0:
+    elif user_answer == False:
         selected_scientist.Score += -20
+    
+    else:
+        print("In specific score assign this was a bad input.")
     
     
 
@@ -353,7 +399,8 @@ def Guesser(scientist_list):
         return 0 
     
     print(f"So user, are you thinking of me, {sci_in_game[-1].name}?")
-    user_decision = input()
+
+    user_decision = Bool_Input()
     
     return user_decision
 
@@ -397,12 +444,10 @@ message = "THE OLD DEAD WHITE MEN GUESSER GAME"
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-print(f'{message:>5}:')
 
-
-for i in range(6):
+""" for i in range(6):
     print(".")
-    time.sleep(0.5)
+    time.sleep(0.5) """
 
 
 print("Welcome to the ODWM game! I, the computer will guess what physicist you are thinking of!")
@@ -455,7 +500,7 @@ user_guess_decision = 0
 
 
 #This is the loop of questions and answering it runs untill the computer guess right
-while user_guess_decision == 0:
+while user_guess_decision == False:
 
     # 0 will be for general questions and 1 will be for spefic questions 
     temp_question_type = randint(0,1)
@@ -472,8 +517,7 @@ while user_guess_decision == 0:
 
     if game_loop_itterations > 5:
 
-        user_decision = Guesser(selected_sci_list)
-        user_guess_decision = int(user_decision)
+        user_guess_decision = Guesser(selected_sci_list)
         game_loop_itterations = 0 
 
 print('\n')
