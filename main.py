@@ -79,6 +79,12 @@ def Bool_Input():
         elif user_bool == "0":
             user_bool = False
             good_input = True
+        elif user_bool == "t":
+            user_bool = True
+            good_input = True
+        elif user_bool == "f":
+             user_bool = False
+             good_input = True
         else:
             print("This is a bad input, please try again.", '\n')
             print("Remember input: “y”, “yes”, or “1” for yes, and input: “n”, “no”, or “0” for false. Capitalizing the letters in your input does not matter, so for example, “YES”, or “nO” would still be a valid input.", '\n')
