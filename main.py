@@ -422,6 +422,9 @@ sci_3_questions = ["Did my work build off of the research by Joseph Priestley?",
 sci_2_questions = ["Was I the first to discover the process to convert mechanical energy to electrical energy in 1831?"]
 sci_7_questions = ["Did my discovery definitely show electricity and magnetism are linked to each other?"]
 sci_8_questions = ["Did my work build off of Rutherford's model of the atom?", "Did my model use data from the light emitted from hydrogen atoms to explain how elections orbited the nucleus?"]
+sci_9_questions = ["Did my calculations say the speed of light was about 10 times the speed of sound, or 3430m/s?", "Did I formulate my experiment to measure the speed of light in 1638?", "Would a source of error in my experiment be how I am using my pulse to measure time?", "Would a source of error be how two people are needed in my experiment to measure the speed of light?"]
+sci_10_questions = ["Was I intentionally trying to measure the speed of light? Did I notice that light had a speed from a trend in my data around 1676?", "Was the data I collected about an astronomical phenomena I was observing intended to be used so measurements of that phenomena could keep track of time?", "Did the data I collected show when Earth was closest to Jupiter, the eclipse of Io would happen 11 minutes earlier than predicted?"]
+sci_11_questions = ["Did my calculations of the speed of light say it traveled at 210,824.1km/s?", "Did I do my calculations of the speed of light in 1678?", "Did I use Romer’s data for my calculations of the speed of light?" ]
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
@@ -431,6 +434,9 @@ sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 sci_6 = Scientist("Ayrton",6,2,None,0,0,sci_6_questions)
 sci_7 = Scientist("Oersted",7,2,None,0,1,sci_7_questions)
 sci_8 = Scientist("Bohr", 8,1,None,0,1,sci_8_questions)
+sci_9 = Scientist("Galileo", 9, 3, None, 0, 1, sci_9_questions)
+sci_10 = Scientist("Roemer", 10, 3, None, 1, 1, sci_10_questions)
+sci_11 = Scientist("Huygens", 11, 3, None, 0, 1, sci_11_questions)
 
 
 #The list of all the scientist objects
