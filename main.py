@@ -140,7 +140,7 @@ def Scientist_Sort(sci_list):
         sci_list2 = []
         length = len(sci_list)
         for i in range(length):
-            if sci_list[i].odwm == True:
+            if sci_list[i].odwm == 1:
                 sci_list2.append(sci_list[i])
         sci_list = sci_list2
     
@@ -440,7 +440,7 @@ sci_11 = Scientist("Huygens", 11, 3, None, 0, 1, sci_11_questions)
 
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
