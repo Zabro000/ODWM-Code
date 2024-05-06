@@ -85,6 +85,18 @@ def Bool_Input():
         elif user_bool == "f":
              user_bool = False
              good_input = True
+        elif user_bool == "true":
+            user_bool = True
+            good_input = True
+        elif user_bool == "false":
+            user_bool = False
+            good_input = True
+        elif user_bool == "yeah":
+            user_bool = True
+            good_input = True
+        elif user_bool == "nah":
+            user_bool = False
+            good_input = True
         else:
             print("This is a bad input, please try again.", '\n')
             print("Remember input: “y”, “yes”, or “1” for yes, and input: “n”, “no”, or “0” for false. Capitalizing the letters in your input does not matter, so for example, “YES”, or “nO” would still be a valid input.", '\n')
@@ -430,7 +442,13 @@ sci_7_questions = ["Did my discovery definitely show electricity and magnetism a
 sci_8_questions = ["Did my work build off of Rutherford's model of the atom?", "Did my model use data from the light emitted from hydrogen atoms to explain how elections orbited the nucleus?"]
 sci_9_questions = ["Did my calculations say the speed of light was about 10 times the speed of sound, or 3430m/s?", "Did I formulate my experiment to measure the speed of light in 1638?", "Would a source of error in my experiment be how I am using my pulse to measure time?", "Would a source of error be how two people are needed in my experiment to measure the speed of light?"]
 sci_10_questions = ["Was I intentionally trying to measure the speed of light? Did I notice that light had a speed from a trend in my data around 1676?", "Was the data I collected about an astronomical phenomena I was observing intended to be used so measurements of that phenomena could keep track of time?", "Did the data I collected show when Earth was closest to Jupiter, the eclipse of Io would happen 11 minutes earlier than predicted?"]
-sci_11_questions = ["Did my calculations of the speed of light say it traveled at 210,824.1km/s?", "Did I do my calculations of the speed of light in 1678?", "Did I use Romer’s data for my calculations of the speed of light?" ]
+sci_11_questions = ["Did my calculations of the speed of light say it traveled at 210,824.1km/s?", "Did I do my calculations of the speed of light in 1678?", "Did I use Romer's data for my calculations of the speed of light?" ]
+sci_12_questions = ["In my experiment, was the manipulated variable changing the speed of a rotating mirror?", "Did I work with Edward Williams Morley to measure the speed of light?", "When did I first perform my experiment to measure the speed of light? Was it in 1881?", "Did my experiment disprove the existence of the “either”, which was the hypothesized medium that light propagated in?", "Did I try measuring the speed of light again in 1930 and was my apparatus located in Pasadena, California?"]
+sci_13_questions = ["While investigating color theory and Young's three color hypothesis, did I take the first color picture in 1861 using an apparatus I built?", "Were the mathematical equations I made that described how electric and magnetic fields interact with each other my most famous contribution to physics?", "Did my equations attempt to describe Faraday's observations and his law of induction?", "Did my mathematical equations of electromagnetic waves turnout to perfectly describe the physical properties of light? Did I publish these findings in 1865?"]
+sci_14_questions = ["Between 1801 to 1805, did I perform an experiment that definitively showed light has properties of transverse waves?", "Did my experiment show that light creates interference fringes interference and diffracts through slits?", "At the time, did my experiment prove Huygen's idea that light acts like a wave to be true and disprove Newton's idea that light was a particle?", "Depending on how my experiment is observed, can it show the wave-particle duality of light and electrons?"]
+sci_15_questions = ["Did I initially think matter can only exchange energy in discrete amounts?", "Did Einstein help me by pointing out that my idea of energy quantization could describe light as well?", "Did my work on energy quantization and solving the ultraviolet catastrophe win a Nobel Prize in 1918?", "Did I support a return to classical physics despite what my and Einstein's work showed? Did I abandon that position after the Compton Effect was discovered?", "In 1905, did Einstein independently work on the same problems I did too?", ""]
+
+
 
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
@@ -443,10 +461,14 @@ sci_8 = Scientist("Bohr", 8,1,None,0,1,sci_8_questions)
 sci_9 = Scientist("Galileo", 9, 3, None, 0, 1, sci_9_questions)
 sci_10 = Scientist("Roemer", 10, 3, None, 1, 1, sci_10_questions)
 sci_11 = Scientist("Huygens", 11, 3, None, 0, 1, sci_11_questions)
+sci_12 = Scientist("Michelson", 12, 3, None, 1, 1, sci_12_questions)
+sci_13 = Scientist("Maxwell", 13, 3, None, 0, 1, sci_13_questions)
+sci_14 = Scientist("Young", 14, 3, None, 1, 1, sci_14_questions )
+sci_15 = Scientist("Planck", 15, 3, None, 0, 1, sci_15_questions )
 
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11, sci_12, sci_13, sci_14, sci_15]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []

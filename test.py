@@ -1,0 +1,1 @@
+print("Were the mathematical equations I made that described how electric and magnetic fields interact with each other my most famous contribution to physics? Were those equations an attempt to mathematically describe Faraday’s observations and his law of induction?")
