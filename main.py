@@ -97,7 +97,7 @@ def Bool_Input():
             good_input = True
         else:
             print("This is a bad input, please try again.", '\n')
-            print("Remember input: “y”, “yes”, “true”, “yeah”, or “1” for yes, and input: “n”, “no”, false, “nah”, or “0” for false. Capitalizing the letters in your input does not matter; for example, “YES”, or “nO” would still be a valid input.", '\n')
+            print("Input, “y”, “yes”, “true”, “yeah”, or “1” for yes, and input, “n”, “no”, false, “nah”, or “0” for false. Capitalizing the letters in your input does not matter; for example, “YES”, or “nO” would still be a valid input.", '\n')
     
 
     return user_bool
@@ -420,6 +420,7 @@ def Guesser(scientist_list):
 
     user_decision = Bool_Input()
 
+    # This removes the person the user said no to so the scientist can be narrowed down more
     if user_decision == False:
         print("Removed", sci_in_game[-1].name)
         sci_in_game.pop(-1)
@@ -500,6 +501,7 @@ message = "THE OLD DEAD WHITE MEN GUESSER GAME"
 
 print("Welcome to the ODWM game! I, the computer will guess what physicist you are thinking of!")
 print("This is the Old Dead White Men Guessing Game! I, the computer will take on the persona of the physicist you are thinking of!")
+print("Input, “y”, “yes”, “true”, “yeah”, or “1” for yes, and input, “n”, “no”, false, “nah”, or “0” for false. Capitalizing the letters in your input does not matter; for example, “YES”, or “nO” would still be a valid input.", '\n')
 print("Now you need to choose some settings!", '\n')
 
 while len(selected_sci_list) <= 1:
