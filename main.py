@@ -1,5 +1,3 @@
-
-#NOTE EINSTEIN IS HERE AS A PLACE HOLDER TO TEST THE FILTER FOR SCIENTISTS FROM SPECIFIC UNITS 
 #AS TIME GOES ON I WILL ADD MORE QUESTIONS FOR THE SCIENTISTS PRESENT
 
 
@@ -99,7 +97,7 @@ def Bool_Input():
             good_input = True
         else:
             print("This is a bad input, please try again.", '\n')
-            print("Remember input: “y”, “yes”, or “1” for yes, and input: “n”, “no”, or “0” for false. Capitalizing the letters in your input does not matter, so for example, “YES”, or “nO” would still be a valid input.", '\n')
+            print("Remember input: “y”, “yes”, “true”, “yeah”, or “1” for yes, and input: “n”, “no”, false, “nah”, or “0” for false. Capitalizing the letters in your input does not matter; for example, “YES”, or “nO” would still be a valid input.", '\n')
     
 
     return user_bool
@@ -434,12 +432,15 @@ def Guesser(scientist_list):
 
 game_file_name = "Questions_and_Answers.csv"
 
+#ODWM 1
 sci_1_questions = ["Did my experimental apparatus originally use water droplets, but in 1910 I changed the substance because the droplets evaporated too fast to make measurements?", "Was a key piece of work I built off of the charge to mass ratio of an electron that was discovered by Thomson?", "In 1916, did I also devise another experiment to measure another fundamental constant? Did I also use a previous constant I measured in my calculations?"] 
 sci_6_questions =["Did my discovery explain why arc lighting lamps -- the common electrical lighting technology of my time -- varied in their brightness and were inefficient?", "Using my discoveries, did my subsequent patients go on to be used from military anti-aircraft searchlights to more efficient street lamps?", "Was I the first female member of the Institution of Electrical Engineers (Now the Institution of Engineering and Technology?"]
 sci_3_questions = ["Did my work build off of the research by Joseph Priestley?", "Does my equation and subsequent law regarding electricity resemble one to do with gravity?"]
 sci_2_questions = ["Was I the first to discover the process to convert mechanical energy to electrical energy in 1831?"]
 sci_7_questions = ["Did my discovery definitely show electricity and magnetism are linked to each other?"]
 sci_8_questions = ["Did my work build off of Rutherford's model of the atom?", "Did my model use data from the light emitted from hydrogen atoms to explain how elections orbited the nucleus?"]
+
+#ODWM 2
 sci_9_questions = ["Did my calculations say the speed of light was about 10 times the speed of sound, or 3430m/s?", "Did I formulate my experiment to measure the speed of light in 1638?", "Would a source of error in my experiment be how I am using my pulse to measure time?", "Would a source of error be how two people are needed in my experiment to measure the speed of light?"]
 sci_10_questions = ["Was I intentionally trying to measure the speed of light? Did I notice that light had a speed from a trend in my data around 1676?", "Was the data I collected about an astronomical phenomena I was observing intended to be used so measurements of that phenomena could keep track of time?", "Did the data I collected show when Earth was closest to Jupiter, the eclipse of Io would happen 11 minutes earlier than predicted?"]
 sci_11_questions = ["Did my calculations of the speed of light say it traveled at 210,824.1km/s?", "Did I do my calculations of the speed of light in 1678?", "Did I use Romer's data for my calculations of the speed of light?" ]
@@ -447,9 +448,10 @@ sci_12_questions = ["In my experiment, was the manipulated variable changing the
 sci_13_questions = ["While investigating color theory and Young's three color hypothesis, did I take the first color picture in 1861 using an apparatus I built?", "Were the mathematical equations I made that described how electric and magnetic fields interact with each other my most famous contribution to physics?", "Did my equations attempt to describe Faraday's observations and his law of induction?", "Did my mathematical equations of electromagnetic waves turnout to perfectly describe the physical properties of light? Did I publish these findings in 1865?"]
 sci_14_questions = ["Between 1801 to 1805, did I perform an experiment that definitively showed light has properties of transverse waves?", "Did my experiment show that light creates interference fringes interference and diffracts through slits?", "At the time, did my experiment prove Huygen's idea that light acts like a wave to be true and disprove Newton's idea that light was a particle?", "Depending on how my experiment is observed, can it show the wave-particle duality of light and electrons?"]
 sci_15_questions = ["Did I initially think matter can only exchange energy in discrete amounts?", "Did Einstein help me by pointing out that my idea of energy quantization could describe light as well?", "Did my work on energy quantization and solving the ultraviolet catastrophe win a Nobel Prize in 1918?", "Did I support a return to classical physics despite what my and Einstein's work showed? Did I abandon that position after the Compton Effect was discovered?", "In 1905, did Einstein independently work on the same problems I did too?", ""]
-
-
-
+sci_16_questions = ["Did I work with Foucault to measure the speed of light?", "Did my apparatus go through two iterations before it accurately measured the speed of light?", "Did my apparatus initially use a rotating cogwheel then was modified with a rotating mirror?", "Was I the first scientist to build an accurate apparatus to measure the speed of light that was fully on Earth?", "In 1862, after two iterations of our apparatus did we eventually get 299,796km/s for the speed of light?"]
+sci_17_questions = ["Did my work describe electron orbitals, why electrons only exist in certain places and relate it to waves? Did I publish this in 1924?", "Did I say if electrons act like standing waves while orbiting around the nucleus of the atom, no energy would be lost as EMR and the electron would be stable? Did I offer this explanation to solve an issue Bohr had with his model of the atom?", "When electrons were fired at gold foil in 1927, did it confirm my theory that they have wave properties?", "Did I propose the idea of particle-wave duality and extend that to electrons and other particles?"]
+sci_18_questions = ["Does my equation describe why light spreads out as the slit it travels though gets smaller? Did this publish my work in 1927?", "Does my work have large implications for experiments that measure the position and velocity of small particles?", "Did my work lay the foundation for the development of the strong force?", "Did my work lead to using probability in quantum physics because I showed that having exact knowledge of all properties of a particle was impossible?"]
+#ODWM 1
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
 sci_3 = Scientist("Coulomb", 3,2, None, 1, 1, sci_3_questions)
@@ -458,6 +460,8 @@ sci_5 = Scientist("Einstein",5,3,None,0,1,None)
 sci_6 = Scientist("Ayrton",6,2,None,0,0,sci_6_questions)
 sci_7 = Scientist("Oersted",7,2,None,0,1,sci_7_questions)
 sci_8 = Scientist("Bohr", 8,1,None,0,1,sci_8_questions)
+
+#ODWM 2
 sci_9 = Scientist("Galileo", 9, 3, None, 0, 1, sci_9_questions)
 sci_10 = Scientist("Roemer", 10, 3, None, 1, 1, sci_10_questions)
 sci_11 = Scientist("Huygens", 11, 3, None, 0, 1, sci_11_questions)
@@ -465,6 +469,9 @@ sci_12 = Scientist("Michelson", 12, 3, None, 1, 1, sci_12_questions)
 sci_13 = Scientist("Maxwell", 13, 3, None, 0, 1, sci_13_questions)
 sci_14 = Scientist("Young", 14, 3, None, 1, 1, sci_14_questions )
 sci_15 = Scientist("Planck", 15, 3, None, 0, 1, sci_15_questions )
+sci_16 = Scientist("Fizeau", 16, 3, None, 0, 1, sci_16_questions)
+sci_17 =  Scientist("de Broglie", 17, 3, None, 0, 1, )
+sci_18 = Scientist("Heisenberg", 18, 3, None, 0, 1, )
 
 
 #The list of all the scientist objects
