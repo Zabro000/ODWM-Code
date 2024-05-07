@@ -317,7 +317,7 @@ def Specific_Question_Picker(sci_in_game):
             break
 
         #this isnt the right error for this issue but it will let me know
-        if error_count > 2000:
+        if error_count > 20000:
             print("There are no more questions in the list this will cause an error!")
             raise LookupError
 
@@ -414,13 +414,18 @@ def Guesser(scientist_list):
         print("I am not confedent of who you were thinking of, answer more questions")
         
         # User decision for no
-        return 0 
+        return False, sci_in_game
     
     print(f"So user, are you thinking of me, {sci_in_game[-1].name}?")
 
     user_decision = Bool_Input()
+
+    if user_decision == False:
+        print("Removed", sci_in_game[-1].name)
+        sci_in_game.pop(-1)
+        
     
-    return user_decision
+    return user_decision, sci_in_game
 
 
 
@@ -470,12 +475,12 @@ sci_13 = Scientist("Maxwell", 13, 3, None, 0, 1, sci_13_questions)
 sci_14 = Scientist("Young", 14, 3, None, 1, 1, sci_14_questions )
 sci_15 = Scientist("Planck", 15, 3, None, 0, 1, sci_15_questions )
 sci_16 = Scientist("Fizeau", 16, 3, None, 0, 1, sci_16_questions)
-sci_17 =  Scientist("de Broglie", 17, 3, None, 0, 1, )
-sci_18 = Scientist("Heisenberg", 18, 3, None, 0, 1, )
+sci_17 =  Scientist("de Broglie", 17, 3, None, 0, 1, sci_17_questions)
+sci_18 = Scientist("Heisenberg", 18, 3, None, 0, 1, sci_18_questions)
 
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11, sci_12, sci_13, sci_14, sci_15]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11, sci_12, sci_13, sci_14, sci_15, sci_16, sci_17, sci_18]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
@@ -558,9 +563,9 @@ while user_guess_decision == False:
 
     game_loop_itterations += 1
 
-    if game_loop_itterations > 5:
+    if game_loop_itterations > 7:
 
-        user_guess_decision = Guesser(selected_sci_list)
+        user_guess_decision, selected_sci_list = Guesser(selected_sci_list)
         game_loop_itterations = 0 
 
 print('\n')
