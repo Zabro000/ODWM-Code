@@ -1,6 +1,3 @@
-#AS TIME GOES ON I WILL ADD MORE QUESTIONS FOR THE SCIENTISTS PRESENT
-
-
 import csv
 import os.path
 from random import randint
