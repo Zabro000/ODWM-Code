@@ -50,7 +50,6 @@ class Scientist:
             print("Propbably no more questions")
 
 
-
 def Bool_Input():
 
     good_input = False
@@ -430,12 +429,6 @@ def Guesser(scientist_list):
 
 
 
-
- 
-
-    
-
-
 game_file_name = "Questions_and_Answers.csv"
 
 #ODWM 1
@@ -460,6 +453,12 @@ sci_17_questions = ["Did my work describe electron orbitals, why electrons only 
 sci_18_questions = ["Does my equation describe why light spreads out as the slit it travels though gets smaller? Did this publish my work in 1927?", "Does my work have large implications for experiments that measure the position and velocity of small particles?", "Did my work lay the foundation for the development of the strong force?", "Did my work lead to using probability in quantum physics because I showed that having exact knowledge of all properties of a particle was impossible?"]
 sci_19_questions = ["In 1885, did I discover a formula to predict the frequency of the visible light spectral lines of hydrogen? Could nobody explain this relationship theoretically until Bohr?", "Did Rydberg generalize my formula to predict the frequency of the visible light spectral lines of the hydrogen atom? Could the generalized formula predict all the spectral lines of hydrogen?", "Was my formula combined with Bohr’s model of the atom to describe how much energy it takes to move electrons between energy levels?"]
 
+
+#ODWM 3 
+sci_20_questions = ["Did my work I published in 1923 contribute to the understanding of particle-wave duality?", "Does my work have to do with mass-energy equivalence and why light has momentum?", "Did I study high speed electrons and collisions?", "In a special collision I studied, did one of the scattered objects interfere with itself causing it to scatter at a specific angle?"]
+sci_21_questions = ["Did I discover the radius of the nucleus?", "Is an issue with my model how the nucleus is made of positive charges packed together?", "Was I surprised when some helium nuclei I shot at a target bounced straight back? Did this show that the nucleus of the atom was small and was positively charged?", "Did my work in 1911 show that the atom was mostly empty space?", "Is my model similar to Bohr’s model in that it is only missing electron shells?", "In 1919, did I do an experiment where nitrogen transformed to oxygen?", "In 1932 did my colleague, James Chadwhick confirm our hypothesis about the existence of neutrons?", "Was I wrong to use alpha particles to collide with other atoms because it took too much energy to speed them up enough to overcome electrostatic repulsion with the target atoms?"]
+sci_22_questions = ["Is my favorite apparatus the crookes tube?", "Did I calculate the charge to mass ratio of the electron? Was it later used by Millikan to discover the charge of the electron?", "Did I discover the electron in 1897? Did I show that atoms are not fundamental particles but they are made of ones?", "With my crookes tube, did I discover that the beams of particles are the same no matter what material was used and are negatively charged?", "Is my model similar to Dalton’s model but mine has electrons?"]
+
 #ODWM 1
 sci_1 = Scientist("Millikan", 1, 2, None, 1, 1, sci_1_questions)
 sci_2 = Scientist("Faraday",2,2,None,0,1,sci_2_questions)
@@ -479,13 +478,17 @@ sci_13 = Scientist("Maxwell", 13, 3, None, 0, 1, sci_13_questions)
 sci_14 = Scientist("Young", 14, 3, None, 1, 1, sci_14_questions )
 sci_15 = Scientist("Planck", 15, 3, None, 0, 1, sci_15_questions )
 sci_16 = Scientist("Fizeau", 16, 3, None, 0, 1, sci_16_questions)
-sci_17 =  Scientist("de Broglie", 17, 3, None, 0, 1, sci_17_questions)
+sci_17 = Scientist("de Broglie", 17, 3, None, 0, 1, sci_17_questions)
 sci_18 = Scientist("Heisenberg", 18, 3, None, 0, 1, sci_18_questions)
 sci_19 = Scientist("Balmer", 19, 3, None, 0, 1, sci_19_questions)
 
+#ODWM 3
+sci_20 = Scientist("Compton", 20, 4, None, 1, 1, sci_20_questions)
+sci_21 = Scientist("Rutherford", 21, 4, None, 1, 1, sci_21_questions)
+sci_22 = Scientist("Thompson", 22, 4, None, 1, 1, sci_22_questions)
 
 #The list of all the scientist objects
-scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11, sci_12, sci_13, sci_14, sci_15, sci_16, sci_17, sci_18, sci_19]
+scientist_list = [sci_1, sci_2, sci_3, sci_4, sci_5, sci_6, sci_7, sci_8, sci_9, sci_10, sci_11, sci_12, sci_13, sci_14, sci_15, sci_16, sci_17, sci_18, sci_19, sci_20, sci_21, sci_22]
 
 #List of the scientist objects that made it through the filter
 selected_sci_list = []
@@ -496,12 +499,6 @@ message = "THE OLD DEAD WHITE MEN GUESSER GAME"
 
 #The game code:
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-""" for i in range(6):
-    print(".")
-    time.sleep(0.5) """
-
 
 print("Welcome to the ODWM game! I, the computer will guess what physicist you are thinking of!")
 print("This is the Old Dead White Men Guessing Game! I, the computer will take on the persona of the physicist you are thinking of!", '\n')
@@ -580,18 +577,6 @@ print("The ability to restart the game along with other features and more physic
 print('\n')
         
     
-
-
-    
-
-
-
-
-
-
-
-
-
 
 # Fix code so the response attrubute is innitallized in the start and not created during the code for organization 
 # Maybe make the guesser code not a function
